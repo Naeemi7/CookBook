@@ -1,0 +1,15 @@
+import { Schema, model } from "mongoose";
+import User from "./User.js";
+
+const recipeSchema = new Schema({
+  title: { type: String, required: true },
+  description: { type: String, required: true },
+  ingredients: [{ type: String, required: true }],
+  image: { type: String, required: true },
+  // Reference to the User model
+  user: { type: Schema.Types.ObjectId, ref: User },
+});
+
+const Recipe = model("Recipe", recipeSchema);
+
+export default Recipe;

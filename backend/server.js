@@ -2,7 +2,8 @@ import express from "express";
 import dotenv from "dotenv";
 import mongoose from "mongoose";
 import userRoutes from "./routes/userRoutes.js";
-import cors from "cors"; // Import the 'cors' module
+import recipeRoutes from "./routes/recipeRoutes.js";
+import cors from "cors";
 
 dotenv.config();
 
@@ -38,7 +39,7 @@ mongoose
 
 // Registering Routes
 app.use("/api/users", userRoutes);
-
+app.use("/api/recipe", recipeRoutes);
 // Server is listening on port 3000
 app.listen(port, () => {
   console.log("Server is listening on port", port);

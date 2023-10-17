@@ -23,15 +23,13 @@ export const createRecipe = async (req, res) => {
     }
 
     //Create new Recipe
-    const newRecipe = new Recipe({
+    const newRecipe = await Recipe.create({
       title,
       description,
       ingredients,
       user: user._id, //User reference to user's ID
     });
 
-    //Save the new recipe to the database
-    await newRecipe.save();
     return res
       .status(StatusCodes.OK)
       .json({ mesage: "The recipe has been saved!", newRecipe });

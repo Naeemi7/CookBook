@@ -10,4 +10,9 @@ export const validateRecipe = [
     .withMessage("The recipe title should consist of alphabetic characters")
     .customSanitizer((value) => uppercaseFirstLetter(value))
     .custom(async (value) => checkRecipeTitle(value)),
+
+  //Sanitizes the recipe description
+  body("description")
+    .trim()
+    .customSanitizer((value) => uppercaseFirstLetter(value)),
 ];

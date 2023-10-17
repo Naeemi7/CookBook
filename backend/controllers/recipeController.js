@@ -39,3 +39,17 @@ export const createRecipe = async (req, res) => {
       .json({ error: "Something went wrong!" });
   }
 };
+
+export const getAllRecipeByUserId = async (req, res) => {
+  try {
+    const recipe = await Recipe.find({ user: req.params.userId });
+
+    return res
+      .status(StatusCodes.OK)
+      .json({ message: "All the recipes are, ", recipe });
+  } catch (error) {
+    return res
+      .status(StatusCodes.INTERNAL_SERVER_ERROR)
+      .json({ error: "Something went wrong" });
+  }
+};

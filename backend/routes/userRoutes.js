@@ -5,6 +5,8 @@ import { validator } from "../middleware/validator.js";
 
 const router = express.Router();
 
+//Non protected endpoints
 router.post("/create", validateUserRules, validator, createUser);
+router.post("/login");
 
 export default router;

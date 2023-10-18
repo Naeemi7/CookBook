@@ -50,6 +50,13 @@ export const getAllRecipeByUserId = async (req, res) => {
   try {
     const recipe = await Recipe.find({ user: req.params.userId });
 
+    if (!recipe) {
+      return res.status(StatusCodes.NOT_FOUND).json({
+        error: "There is no recipe associated with the given user Id",
+        error: error.mesage,
+      });
+    }
+
     return res
       .status(StatusCodes.OK)
       .json({ message: "All the recipes are, ", recipe });
@@ -70,11 +77,52 @@ export const getAllRecipe = async (req, res) => {
   try {
     const recipes = await Recipe.find().populate("user");
 
+    if (!recipes) {
+      return res
+        .status(StatusCodes.NOT_FOUND)
+        .json({ error: "The recipies not found", error: error.mesage });
+    }
+
     return res
       .status(StatusCodes.OK)
       .json({ message: "All Recipes are: ", recipes });
   } catch (error) {
     console.log(error);
+    return res
+      .status(StatusCodes.INTERNAL_SERVER_ERROR)
+      .json({ error: "Something went wrong", error: error.message });
+  }
+};
+
+/**
+ * Handles the update for recipe using recipe ID
+ * @param {*} req
+ * @param {*} res
+ * @returns
+ */
+export const updateRecipe = async (req, res) => {
+  try {
+    const { recipeId } = req.params;
+    const { title } = req.body;
+
+    const updatedRecipe = await Recipe.findByIdAndUpdate(
+      recipeId,
+      {
+        $set: { title }, //Specify the filed to update
+      },
+      { new: true } // This returns the updated recipe
+    );
+
+    if (!updateRecipe) {
+      return res
+        .status(StatusCodes.NOT_FOUND)
+        .json({ error: "Not found", error: error.mesage });
+    }
+
+    return res
+      .status(StatusCodes.OK)
+      .json({ message: "The recipe is updated", updatedRecipe });
+  } catch (error) {
     return res
       .status(StatusCodes.INTERNAL_SERVER_ERROR)
       .json({ error: "Something went wrong", error: error.message });

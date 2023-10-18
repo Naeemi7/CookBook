@@ -3,6 +3,7 @@ import {
   createRecipe,
   getAllRecipe,
   getAllRecipeByUserId,
+  updateRecipe,
 } from "../controllers/recipeController.js";
 import { validateRecipe } from "../middleware/recipeSanitizer.js";
 import { validator } from "../middleware/validator.js";
@@ -12,6 +13,7 @@ const router = express.Router();
 
 //Unprotected endpoints
 router.get("/", getAllRecipe);
+router.patch("/update/:recipeId", updateRecipe);
 
 //Protected enpoints
 router.use(authorizeUser);

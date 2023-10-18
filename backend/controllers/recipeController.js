@@ -80,3 +80,25 @@ export const getAllRecipe = async (req, res) => {
       .json({ error: "Something went wrong", error: error.message });
   }
 };
+
+/**
+ * Delete a Recipe by id
+ * @param {*} req 
+ * @param {*} res 
+ * @returns 
+ */
+
+export const deleteRecipeById=async (req,res)=>{
+  try{
+    const recipe=await recipe.findByIdAndDelete(req.params.id);
+
+    if(!recipe){
+      return res.status(StatusCodes.NOT_FOUND).json({mesage:"Recipe not found"})
+
+    }
+
+    return res.status(StatusCodes.OK).send({ message: "Recipe deleted" });
+  } catch (error) {
+      return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({ message: 'Error happened', error: error.toString() })
+  }
+}

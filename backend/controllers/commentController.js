@@ -97,3 +97,26 @@ export const getAllCommentByRecipeId = async (req, res) => {
       .json({ error: "Something went wrong", error: error.message });
   }
 };
+/**
+ * Updates a Comment by id 
+ * @param {*} req 
+ * @param {*} res 
+ */
+export const updateCommentById = async (req, res) => {
+
+  try {
+      //look for the tea in our array that has the :id
+      const comment = await Comment.findByIdAndUpdate(req.params.id, {
+          comment: req.body.comment
+      });
+
+      if (!comment) { //when the tea doesn't exist --> send back a 404
+          return res.status(StatusCodes.NOT_FOUND).json({ message: "comment not found" });
+      }
+
+      return res.status(StatusCodes.NO_CONTENT).json();
+  } catch (error) {
+      return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({ message: 'Error happened', error: error.toString() })
+  }
+
+}

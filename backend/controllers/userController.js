@@ -4,7 +4,7 @@ import bcrypt from "bcrypt";
 import { generateJwt } from "../helper/jwt.js";
 
 /**
- * Create User: Handles user registration
+  Handles user registration
  * @param {*} req - Express request object
  * @param {*} res - Express response object
  * @returns - JSON response
@@ -46,7 +46,7 @@ export const createUser = async (req, res) => {
 };
 
 /**
- * Log in a user.
+ * Handles the user login.
  * @param {*} req
  * @param {*} res
  * @returns
@@ -97,7 +97,7 @@ export const loginUser = async (req, res) => {
 };
 
 /**
- * Logout Users
+ * Handles the user logout
  * @param {*} req
  * @param {*} res
  * @returns

@@ -3,7 +3,7 @@ import Recipe from "../models/Recipe.js";
 import User from "../models/User.js";
 
 /**
- * Creates new Recipe based on userId
+ * Handles  creating new Recipe based on userId
  * @param {*} req
  * @param {*} res
  * @returns
@@ -41,7 +41,7 @@ export const createRecipe = async (req, res) => {
 };
 
 /**
- * Get All Recipes using userId
+ * Handles getting all Recipes using userId
  * @param {*} req
  * @param {*} res
  * @returns
@@ -61,7 +61,7 @@ export const getAllRecipeByUserId = async (req, res) => {
 };
 
 /**
- * Get All the Recipies
+ * Handles getting All the Recipies
  * @param {*} req
  * @param {*} res
  * @returns

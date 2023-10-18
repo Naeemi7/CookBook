@@ -3,6 +3,12 @@ import Comment from "../models/Comment.js";
 import User from "../models/User.js";
 import Recipe from "../models/Recipe.js";
 
+/**
+ * Handles the adding comments for Recipe using the userId and RecipeId
+ * @param {*} req
+ * @param {*} res
+ * @returns
+ */
 export const addComment = async (req, res) => {
   try {
     const { userId, recipeId } = req.params;
@@ -21,8 +27,12 @@ export const addComment = async (req, res) => {
       recipe: recipe._id, // Reference to the recipe's ObjectId
     });
 
+    const returnedComment = await newComment.populate(["user", "recipe"]);
+
     return res
       .status(StatusCodes.OK)
-      .json({ message: "The comment is: ", newComment });
-  } catch (error) {}
+      .json({ message: "The comment is: ", returnedComment });
+  } catch (error) {
+    console.log(error);
+  }
 };

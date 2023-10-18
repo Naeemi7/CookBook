@@ -6,7 +6,7 @@ export const validateRecipe = [
   //Sanitizes the recipe title
   body("title")
     .trim()
-    .isAlpha()
+    .isAlpha("en-GB", { ignore: " " }) //ignores the spaces
     .withMessage("The recipe title should consist of alphabetic characters")
     .customSanitizer((value) => uppercaseFirstLetter(value))
     .custom(async (value) => checkRecipeTitle(value)),
@@ -15,4 +15,7 @@ export const validateRecipe = [
   body("description")
     .trim()
     .customSanitizer((value) => uppercaseFirstLetter(value)),
+
+  //Sanitazes the recipe ingredients
+  body("ingredients").isAlphanumeric(),
 ];

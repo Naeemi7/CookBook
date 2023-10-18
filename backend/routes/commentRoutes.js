@@ -1,5 +1,9 @@
 import express from "express";
-import { addComment } from "../controllers/commentController.js";
+import {
+  addComment,
+  deleteComment,
+  getAllCommentByRecipeId,
+} from "../controllers/commentController.js";
 import { validateComments } from "../middleware/commentSanitizer.js";
 import { validator } from "../middleware/validator.js";
 
@@ -12,4 +16,7 @@ router.post(
   addComment
 );
 
+router.delete("/delete/:recipeId", deleteComment);
+
+router.get("/commentList/:recipeId", getAllCommentByRecipeId);
 export default router;

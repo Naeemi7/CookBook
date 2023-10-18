@@ -41,7 +41,7 @@ export const createUser = async (req, res) => {
     // Return an internal server error response if an error occurs
     return res
       .status(StatusCodes.INTERNAL_SERVER_ERROR)
-      .json({ error: "Something went wrong", error });
+      .json({ error: "Something went wrong", error: error.message });
   }
 };
 
@@ -92,7 +92,7 @@ export const loginUser = async (req, res) => {
     console.error(error);
     return res
       .status(StatusCodes.INTERNAL_SERVER_ERROR)
-      .json({ error: "Something went wrong", error });
+      .json({ error: "Something went wrong", error: error.message });
   }
 };
 

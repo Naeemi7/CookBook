@@ -33,6 +33,8 @@ export const addComment = async (req, res) => {
       .status(StatusCodes.OK)
       .json({ message: "The comment is: ", returnedComment });
   } catch (error) {
-    console.log(error);
+    return res
+      .status(StatusCodes.INTERNAL_SERVER_ERROR)
+      .json({ error: "Something went wrong", error });
   }
 };

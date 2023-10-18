@@ -36,7 +36,7 @@ export const createRecipe = async (req, res) => {
   } catch (error) {
     return res
       .status(StatusCodes.INTERNAL_SERVER_ERROR)
-      .json({ error: "Something went wrong!" });
+      .json({ error: "Something went wrong", error });
   }
 };
 
@@ -56,7 +56,7 @@ export const getAllRecipeByUserId = async (req, res) => {
   } catch (error) {
     return res
       .status(StatusCodes.INTERNAL_SERVER_ERROR)
-      .json({ error: "Something went wrong" });
+      .json({ error: "Something went wrong", error });
   }
 };
 
@@ -77,6 +77,6 @@ export const getAllRecipe = async (req, res) => {
     console.log(error);
     return res
       .status(StatusCodes.INTERNAL_SERVER_ERROR)
-      .json({ error: "Something went wrong" });
+      .json({ error: "Something went wrong", error });
   }
 };

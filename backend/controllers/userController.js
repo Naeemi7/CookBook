@@ -39,9 +39,9 @@ export const createUser = async (req, res) => {
   } catch (error) {
     console.error(error); // Log the error for debugging
     // Return an internal server error response if an error occurs
-    return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
-      error: "Something went wrong!",
-    });
+    return res
+      .status(StatusCodes.INTERNAL_SERVER_ERROR)
+      .json({ error: "Something went wrong", error });
   }
 };
 
@@ -92,7 +92,7 @@ export const loginUser = async (req, res) => {
     console.error(error);
     return res
       .status(StatusCodes.INTERNAL_SERVER_ERROR)
-      .json({ error: "Something went wrong. Please try again later." });
+      .json({ error: "Something went wrong", error });
   }
 };
 

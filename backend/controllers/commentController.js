@@ -97,3 +97,31 @@ export const getAllCommentByRecipeId = async (req, res) => {
       .json({ error: "Something went wrong", error: error.message });
   }
 };
+
+export const updateCommentbyId = async (req, res) => {
+  try {
+    const { commentId } = req.params;
+    const { comment } = req.body;
+    const updatedComment = await Comment.findByIdAndUpdate(
+      commentId,
+      {
+        $set: { comment },
+      },
+      { new: true }
+    );
+
+    if (!updatedComment) {
+      return res
+        .status(StatusCodes.NOT_FOUND)
+        .json({ error: "comment not found", error: error.message });
+    }
+
+    return res
+      .status(StatusCodes.OK)
+      .json({ messge: "The comment is updated", updatedComment });
+  } catch (error) {
+    return res
+      .status(StatusCodes.INTERNAL_SERVER_ERROR)
+      .json({ error: "Something went wrong", error: error.message });
+  }
+};

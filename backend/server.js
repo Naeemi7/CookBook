@@ -4,6 +4,7 @@ import mongoose from "mongoose";
 import userRoutes from "./routes/userRoutes.js";
 import recipeRoutes from "./routes/recipeRoutes.js";
 import cors from "cors";
+import cookieParser from "cookie-parser";
 
 dotenv.config();
 
@@ -12,6 +13,8 @@ const port = 3000;
 
 // Parse the JSON body to req.body
 app.use(express.json());
+
+app.use(cookieParser());
 
 // Setting up CORS
 const corsOptions = {

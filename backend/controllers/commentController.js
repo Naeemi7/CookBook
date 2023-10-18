@@ -98,27 +98,34 @@ export const getAllCommentByRecipeId = async (req, res) => {
   }
 };
 /**
- * Updates a Comment by id 
- * @param {*} req 
- * @param {*} res 
+ * Updates a Comment by id
+ * @param {*} req
+ * @param {*} res
  */
 export const updateCommentById = async (req, res) => {
-
   try {
-      
-      const comment = await Comment.findByIdAndUpdate(req.params.id, {
-        $set: {  
-    comment: req.body.comment 
-        }
-      },{new:true});
+    const updatedComment = await Comment.findByIdAndUpdate(
+      req.params.id,
+      {
+        $set: {
+          comment: req.body.comment,
+        },
+      },
+      { new: true }
+    );
 
-      if (!comment) { 
-          return res.status(StatusCodes.NOT_FOUND).json({ message: "comment not found" });
-      }
+    if (!updatedComment) {
+      return res
+        .status(StatusCodes.NOT_FOUND)
+        .json({ message: "comment not found" });
+    }
 
-      return res.status(StatusCodes.NO_CONTENT).json();
+    return res
+      .status(StatusCodes.OK)
+      .json({ message: "The comment is updated", updatedComment });
   } catch (error) {
-      return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({ message: 'Error happened', error: error.toString() })
+    return res
+      .status(StatusCodes.INTERNAL_SERVER_ERROR)
+      .json({ message: "Error happened", error: error.toString() });
   }
-
-}
+};

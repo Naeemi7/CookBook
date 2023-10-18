@@ -74,7 +74,7 @@ export const loginUser = async (req, res) => {
       const token = generateJwt(user._id);
 
       // Set the token as an HTTP-only cookie
-      res.cookie("UserToken", token, {
+      res.cookie("userToken", token, {
         httpOnly: true,
         secure: false, // Set to true in production with HTTPS
       });
@@ -103,7 +103,7 @@ export const loginUser = async (req, res) => {
  * @returns
  */
 export const logoutUser = (req, res) => {
-  res.clearCookie("UserToken", {
+  res.clearCookie("userToken", {
     httpOnly: true,
     secure: false,
   });

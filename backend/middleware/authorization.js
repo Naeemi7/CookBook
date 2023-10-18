@@ -3,7 +3,7 @@ import { verifyJwt } from "../helper/jwt.js";
 
 export const authorizeUser = (req, res, next) => {
   // Handle if the token isn't there
-  if (!req.cookies.jwt) {
+  if (!req.cookies.userToken) {
     //does the jwt token cookie exist?
     return res
       .status(StatusCodes.UNAUTHORIZED)
@@ -12,7 +12,7 @@ export const authorizeUser = (req, res, next) => {
 
   //verify if token is valid
   try {
-    const isValid = verifyJwt(req.cookies.jwt);
+    const isValid = verifyJwt(req.cookies.userToken);
     console.log("isValid token", isValid);
   } catch (error) {
     return res

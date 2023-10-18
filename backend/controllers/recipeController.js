@@ -40,6 +40,12 @@ export const createRecipe = async (req, res) => {
   }
 };
 
+/**
+ * Get All Recipes using userId
+ * @param {*} req
+ * @param {*} res
+ * @returns
+ */
 export const getAllRecipeByUserId = async (req, res) => {
   try {
     const recipe = await Recipe.find({ user: req.params.userId });
@@ -48,6 +54,27 @@ export const getAllRecipeByUserId = async (req, res) => {
       .status(StatusCodes.OK)
       .json({ message: "All the recipes are, ", recipe });
   } catch (error) {
+    return res
+      .status(StatusCodes.INTERNAL_SERVER_ERROR)
+      .json({ error: "Something went wrong" });
+  }
+};
+
+/**
+ * Get All the Recipies
+ * @param {*} req
+ * @param {*} res
+ * @returns
+ */
+export const getAllRecipe = async (req, res) => {
+  try {
+    const recipes = await Recipe.find().populate("user");
+
+    return res
+      .status(StatusCodes.OK)
+      .json({ message: "All Recipes are: ", recipes });
+  } catch (error) {
+    console.log(error);
     return res
       .status(StatusCodes.INTERNAL_SERVER_ERROR)
       .json({ error: "Something went wrong" });

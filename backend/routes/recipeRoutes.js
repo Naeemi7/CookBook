@@ -1,6 +1,7 @@
 import express from "express";
 import {
   createRecipe,
+  getAllRecipe,
   getAllRecipeByUserId,
 } from "../controllers/recipeController.js";
 import { validateRecipe } from "../middleware/recipeSanitizer.js";
@@ -11,5 +12,6 @@ const router = express.Router();
 router.post("/create/:userId", validateRecipe, validator, createRecipe);
 
 router.get("/:userId", getAllRecipeByUserId);
+router.get("/", getAllRecipe);
 
 export default router;

@@ -1,5 +1,4 @@
 import { Schema, model } from "mongoose";
-import User from "./User.js";
 
 const recipeSchema = new Schema(
   {
@@ -7,8 +6,12 @@ const recipeSchema = new Schema(
     description: { type: String, required: true },
     ingredients: [{ type: String, required: true }],
     image: { type: String },
+
     // Reference to the User model
-    user: { type: Schema.Types.ObjectId, ref: User, default: null },
+    user: { type: Schema.Types.ObjectId, ref: "User", default: null },
+
+    //Add a field to store comments associated with the recipe
+    comments: { type: Schema.Types.ObjectId, ref: "Comment" },
   },
   { timestamps: true }
 );

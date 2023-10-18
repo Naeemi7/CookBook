@@ -1,10 +1,12 @@
 import express from "express";
 import dotenv from "dotenv";
 import mongoose from "mongoose";
-import userRoutes from "./routes/userRoutes.js";
-import recipeRoutes from "./routes/recipeRoutes.js";
 import cors from "cors";
 import cookieParser from "cookie-parser";
+
+import userRoutes from "./routes/userRoutes.js";
+import recipeRoutes from "./routes/recipeRoutes.js";
+import commentRoutes from "./routes/commentRoutes.js";
 
 dotenv.config();
 
@@ -43,6 +45,8 @@ mongoose
 // Registering Routes
 app.use("/api/users", userRoutes);
 app.use("/api/recipe", recipeRoutes);
+app.use("/api/comment", commentRoutes);
+
 // Server is listening on port 3000
 app.listen(port, () => {
   console.log("Server is listening on port", port);

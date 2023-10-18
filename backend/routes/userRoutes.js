@@ -9,7 +9,7 @@ import { validator } from "../middleware/validator.js";
 
 const router = express.Router();
 
-//Non protected endpoints
+//Unprotected endpoints
 router.post("/register", validateUserRules, validator, createUser);
 router.post("/login", loginUser);
 router.get("/logout", logoutUser);

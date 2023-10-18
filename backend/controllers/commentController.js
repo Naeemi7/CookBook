@@ -105,12 +105,14 @@ export const getAllCommentByRecipeId = async (req, res) => {
 export const updateCommentById = async (req, res) => {
 
   try {
-      //look for the tea in our array that has the :id
+      
       const comment = await Comment.findByIdAndUpdate(req.params.id, {
-          comment: req.body.comment
-      });
+        $set: {  
+    comment: req.body.comment 
+        }
+      },{new:true});
 
-      if (!comment) { //when the tea doesn't exist --> send back a 404
+      if (!comment) { 
           return res.status(StatusCodes.NOT_FOUND).json({ message: "comment not found" });
       }
 

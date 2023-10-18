@@ -95,3 +95,18 @@ export const loginUser = async (req, res) => {
       .json({ error: "Something went wrong. Please try again later." });
   }
 };
+
+/**
+ * Logout Users
+ * @param {*} req
+ * @param {*} res
+ * @returns
+ */
+export const logoutUser = (req, res) => {
+  res.clearCookie("UserToken", {
+    httpOnly: true,
+    secure: false,
+  });
+
+  return res.json({ message: "User logged out" });
+};

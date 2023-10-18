@@ -1,4 +1,12 @@
+import { useState } from "react";
+
 const Navbar = () => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
+
   return (
     <nav className="bg-white border-gray-200 dark:bg-header">
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">

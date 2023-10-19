@@ -1,10 +1,11 @@
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
-
+import useUserContext from "../context/useUserContext";
 import guestProfile from "../assets/images/navbar/profile.png";
 import logo from "../assets/images/navbar/logo.png";
 
 const Navbar = () => {
+  const { loggedIn } = useUserContext();
   const [isProfileOpen, setProfileOpen] = useState(false);
   const [isMenuOpen, setMenuOpen] = useState(false);
 
@@ -13,7 +14,7 @@ const Navbar = () => {
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
         {/* Logo section */}
         <a href="#" className="flex items-center">
-          <img src={logo} className="h-12 mr-3" alt="Cook book logo" />
+          <img src={logo} className="h-12 mr-3" alt="Cookbook logo" />
           <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-cards">
             CookBook
           </span>
@@ -23,7 +24,7 @@ const Navbar = () => {
         <div className="md:hidden">
           <button
             type="button"
-            className="p-2.5 ml-2 text-sm font-medium text-white bg-cards rounded-lg hover:bg-cards focus:ring-2 focus:outline-none focus:ring-button dark:bg-cards dark:hover-bg-cards"
+            className="p-2.5 ml-2 text-sm font-medium text-white bg-cards rounded-lg hover:bg-cards focus:ring-2 focus:outline-none focus:ring-button dark:bg-cards dark:hover:bg-cards"
           >
             <svg
               className="w-4 h-4"
@@ -77,7 +78,7 @@ const Navbar = () => {
           </div>
           <button
             type="submit"
-            className="p-2.5 ml-2 text-sm font-medium text-white bg-cards rounded-lg  hover:bg-button focus:ring-2 focus:outline-none focus:ring-cards dark:bg-cards dark:hover-bg-cards"
+            className="p-2.5 ml-2 text-sm font-medium text-white bg-cards rounded-lg hover:bg-button focus:ring-2 focus:outline-none focus:ring-cards dark:bg-cards dark:hover-bg-cards"
           >
             <svg
               className="w-4 h-4"
@@ -124,112 +125,118 @@ const Navbar = () => {
               </div>
 
               <ul>
-                <li>
-                  <NavLink
-                    to="/dashboard"
-                    className="block px-4 py-2 text-sm text-gray-700 hover:bg-cards dark:hover-bg-gray-600 dark:text-gray-200 dark:hover-text-white rounded-lg"
-                  >
-                    <svg
-                      className="w-4 h-4 inline mr-2"
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
+                {loggedIn ? (
+                  <li>
+                    <NavLink
+                      to="/dashboard"
+                      className="block px-4 py-2 text-sm text-gray-700 hover:bg-cards dark:hover-bg-gray-600 dark:text-gray-200 dark:hover-text-white rounded-lg"
                     >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth="2"
-                        d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
-                      />
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth="2"
-                        d="M19 20a1 1 0 01-1 1H6a1 1 0 01-1-1V9a1 1 0 011-1h7l2-3h4a1 1 0 011 1v10z"
-                      />
-                    </svg>
-                    Dashboard
-                  </NavLink>
-                </li>
-                <li>
-                  <NavLink
-                    to="/login"
-                    className="block px-4 py-2 text-sm text-gray-700 hover:bg-cards dark:hover-bg-gray-600 dark:text-gray-200 dark:hover-text-white rounded-lg"
-                  >
-                    <svg
-                      className="w-4 h-4 inline mr-2"
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
+                      <svg
+                        className="w-4 h-4 inline mr-2"
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth="2"
+                          d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+                        />
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth="2"
+                          d="M19 20a1 1 0 01-1 1H6a1 1 0 01-1-1V9a1 1 0 011-1h7l2-3h4a1 1 0 011 1v10z"
+                        />
+                      </svg>
+                      Dashboard
+                    </NavLink>
+                  </li>
+                ) : (
+                  <li>
+                    <NavLink
+                      to="/login"
+                      className="block px-4 py-2 text-sm text-gray-700 hover:bg-cards dark:hover-bg-gray-600 dark:text-gray-200 dark:hover-text-white rounded-lg"
                     >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth="2"
-                        d="M16 3.51a2.5 2.5 0 00-3.54 0l-6 6a2.5 2.5 0 00-.73 1.77v5a2.5 2.5 0 002.5 2.5h10a2.5 2.5 0 002.5-2.5v-5a2.5 2.5 0 00-.73-1.77l-6-6z"
-                      />
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth="2"
-                        d="M17 16v2a2 2 0 01-2 2H9a2 2 0 01-2-2v-2"
-                      />
-                    </svg>
-                    Sign in
-                  </NavLink>
-                </li>
-                <li>
-                  <NavLink
-                    to="/register"
-                    className="block px-4 py-2 text-sm text-gray-700 hover:bg-cards dark:hover-bg-gray-600 dark:text-gray-200 dark:hover-text-white rounded-lg"
-                  >
-                    <svg
-                      className="w-4 h-4 inline mr-2"
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
+                      <svg
+                        className="w-4 h-4 inline mr-2"
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth="2"
+                          d="M16 3.51a2.5 2.5 0 00-3.54 0l-6 6a2.5 2.5 0 00-.73 1.77v5a2.5 2.5 0 002.5 2.5h10a2.5 2.5 0 002.5-2.5v-5a2.5 2.5 0 00-.73-1.77l-6-6z"
+                        />
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth="2"
+                          d="M17 16v2a2 2 0 01-2 2H9a2 2 0 01-2-2v-2"
+                        />
+                      </svg>
+                      Sign in
+                    </NavLink>
+                  </li>
+                )}
+                {loggedIn ? (
+                  <li>
+                    <NavLink
+                      to="/logout"
+                      className="block px-4 py-2 text-sm text-gray-700 hover-bg-cards dark:hover-bg-gray-600 dark:text-gray-200 dark:hover-text-white rounded-lg"
                     >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth="2"
-                        d="M6 18L18 6M6 6l12 12"
-                      />
-                    </svg>
-                    Sign up
-                  </NavLink>
-                </li>
-                <li>
-                  <NavLink
-                    to="/logout"
-                    className="block px-4 py-2 text-sm text-gray-700 hover:bg-cards dark:hover-bg-gray-600 dark:text-gray-200 dark:hover-text-white rounded-lg"
-                  >
-                    <svg
-                      className="w-4 h-4 inline mr-2"
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
+                      <svg
+                        className="w-4 h-4 inline mr-2"
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth="2"
+                          d="M9 2l-5 5a5 5 0 007 7l-1.414 1.414a2 2 0 01-2.828 0L2 10"
+                        />
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth="2"
+                          d="M15 22l5-5a5 5 0 00-7-7l1.414-1.414a2 2 0 012.828 0L22 14"
+                        />
+                      </svg>
+                      Sign out
+                    </NavLink>
+                  </li>
+                ) : (
+                  <li>
+                    <NavLink
+                      to="/register"
+                      className="block px-4 py-2 text-sm text-gray-700 hover-bg-cards dark:hover-bg-gray-600 dark:text-gray-200 dark:hover-text-white rounded-lg"
                     >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth="2"
-                        d="M9 2l-5 5a5 5 0 007 7l-1.414 1.414a2 2 0 01-2.828 0L2 10"
-                      />
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth="2"
-                        d="M15 22l5-5a5 5 0 00-7-7l1.414-1.414a2 2 0 012.828 0L22 14"
-                      />
-                    </svg>
-                    Sign out
-                  </NavLink>
-                </li>
+                      <svg
+                        className="w-4 h-4 inline mr-2"
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth="2"
+                          d="M6 18L18 6M6 6l12 12"
+                        />
+                      </svg>
+                      Sign up
+                    </NavLink>
+                  </li>
+                )}
               </ul>
             </div>
           )}

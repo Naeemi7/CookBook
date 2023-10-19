@@ -2,7 +2,7 @@ import { NavLink } from "react-router-dom";
 
 const Register = () => {
   return (
-    <div className="flex items-center justify-center h-[70vh]">
+    <div className="flex items-center justify-center h-[72vh]">
       <div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-cards dark:border-cards">
         <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
           <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">

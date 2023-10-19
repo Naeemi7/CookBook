@@ -3,7 +3,7 @@ import useUserContext from "../context/useUserContext";
 import Swal from "sweetalert2";
 
 const Login = () => {
-  const { loginUser } = useUserContext();
+  const { loginUser, error } = useUserContext();
   const navigate = useNavigate();
 
   const handleLogin = async (event) => {
@@ -19,18 +19,30 @@ const Login = () => {
     try {
       await loginUser(data);
 
-      Swal.fire({
-        position: "top-end",
-        icon: "success",
-        title: "Login Successful",
-        showConfirmButton: false,
-        timer: 1500,
-      });
+      if (error) {
+        Swal.fire({
+          position: "top-end",
+          icon: "error",
+          title: "Oops...",
+          text: error, // Display the error message from your context
+          showConfirmButton: false,
+          timer: 5000,
+        });
+      } else {
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: "Login Successful",
+          showConfirmButton: false,
+          background: "#262f0d",
+          timer: 2000,
+        });
 
-      // Timeout before navigating to the dashboard
-      setTimeout(() => {
-        navigate("/dashboard");
-      }, 2000);
+        // Timeout before navigating to the dashboard
+        setTimeout(() => {
+          navigate("/dashboard");
+        }, 2000);
+      }
     } catch (error) {
       console.log(error.message);
     }

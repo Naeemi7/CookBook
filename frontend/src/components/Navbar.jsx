@@ -5,9 +5,12 @@ import guestProfile from "../assets/images/navbar/profile.png";
 import logo from "../assets/images/navbar/logo.png";
 
 const Navbar = () => {
-  const { loggedIn } = useUserContext();
+  const { loggedIn, user } = useUserContext();
   const [isProfileOpen, setProfileOpen] = useState(false);
   const [isMenuOpen, setMenuOpen] = useState(false);
+
+  //width of the drop down
+  const dropdownWidth = "w-56";
 
   return (
     <nav className="bg-white border border-gray-200 dark:bg-header relative">
@@ -114,13 +117,15 @@ const Navbar = () => {
             />
           </button>
           {isProfileOpen && (
-            <div className="z-50 absolute right-0 mt-4 text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-footer dark:divide-gray-600">
-              <div className="px-4 py-3">
+            <div
+              className={`z-50 absolute right-0 mt-4 text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-footer ${dropdownWidth} dark:divide-gray-600`}
+            >
+              <div className="px-4 py-3 ">
                 <span className="block text-sm text-gray-900 dark:text-white">
-                  Bonnie Green
+                  {loggedIn ? `${user.firstname} ${user.lastname}` : "Guest"}
                 </span>
                 <span className="block text-sm text-gray-500 truncate dark:text-gray-400">
-                  name@flowbite.com
+                  {loggedIn ? `${user.email} ` : null}
                 </span>
               </div>
 

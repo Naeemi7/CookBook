@@ -5,10 +5,11 @@ export default {
     extend: {
       colors: {
         // Add your custom colors here
-        header: "#428612",
-        footer: "#326414",
-        button: "#bcd76d",
-        background: "#e1edc1",
+        header: "#a9b6b6",
+        footer: "#71757a",
+        button: "#e3b905",
+        background: "#e3ece2",
+        cards: "#262f0d",
       },
     },
   },

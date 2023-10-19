@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 
 import guestProfile from "../assets/images/navbar/profile.png";
@@ -104,6 +104,7 @@ const Navbar = () => {
             type="button"
             className="flex mr-3 text-sm bg-header border border-gray-200 rounded-full md:mr-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600"
             onClick={() => setProfileOpen(!isProfileOpen)}
+            onMouseEnter={() => setProfileOpen(!isProfileOpen)}
           >
             <span className="sr-only">Open user menu</span>
             <img

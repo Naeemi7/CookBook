@@ -1,11 +1,9 @@
 import { NavLink, useNavigate } from "react-router-dom";
-/* import useUserContext from "../context/useUserContext"; */
-import { useContext } from "react";
-import userContext from "../context/userContext";
+import useUserContext from "../context/useUserContext";
 import Swal from "sweetalert2";
 
 const Login = () => {
-  const { loginUser, login } = useContext(userContext);
+  const { loginUser } = useUserContext();
   const navigate = useNavigate();
 
   const handleLogin = async (event) => {

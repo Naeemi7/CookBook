@@ -1,8 +1,11 @@
 import { NavLink, useNavigate } from "react-router-dom";
-import useUserContext from "../context/useUserContext";
+/* import useUserContext from "../context/useUserContext"; */
+import { useContext } from "react";
+import userContext from "../context/userContext";
+import Swal from "sweetalert2";
 
 const Login = () => {
-  const { loginUser } = useUserContext();
+  const { loginUser, login } = useContext(userContext);
   const navigate = useNavigate();
 
   const handleLogin = async (event) => {
@@ -17,12 +20,23 @@ const Login = () => {
 
     try {
       await loginUser(data);
-      navigate("/dashboard");
+
+      Swal.fire({
+        position: "top-end",
+        icon: "success",
+        title: "Login Successful",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+
+      // Timeout before navigating to the dashboard
+      setTimeout(() => {
+        navigate("/dashboard");
+      }, 2000);
     } catch (error) {
       console.log(error.message);
     }
   };
-
   return (
     <div className="flex items-center justify-center h-[70vh]">
       <div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-cards dark:border-gray-700">

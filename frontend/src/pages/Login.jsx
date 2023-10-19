@@ -1,9 +1,9 @@
 import { NavLink, useNavigate } from "react-router-dom";
-import useUserContext from "../context/useUserContext";
+import useCookBookContext from "../context/useCookBookContext";
 import Swal from "sweetalert2";
 
 const Login = () => {
-  const { loginUser, error } = useUserContext();
+  const { loginUser, error } = useCookBookContext();
   const navigate = useNavigate();
 
   const handleLogin = async (event) => {
@@ -40,7 +40,7 @@ const Login = () => {
 
         // Timeout before navigating to the dashboard
         setTimeout(() => {
-          navigate("/dashboard");
+          navigate("/");
         }, 2000);
       }
     } catch (error) {

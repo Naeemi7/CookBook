@@ -1,11 +1,11 @@
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
-import useUserContext from "../context/useUserContext";
+import useCookBookContext from "../context/useCookBookContext";
 import guestProfile from "../assets/images/navbar/profile.png";
 import logo from "../assets/images/navbar/logo.png";
 
 const Navbar = () => {
-  const { loggedIn, user } = useUserContext();
+  const { loggedIn, user } = useCookBookContext();
   const [isProfileOpen, setProfileOpen] = useState(false);
   const [isMenuOpen, setMenuOpen] = useState(false);
 
@@ -156,7 +156,7 @@ const Navbar = () => {
                           d="M19 20a1 1 0 01-1 1H6a1 1 0 01-1-1V9a1 1 0 011-1h7l2-3h4a1 1 0 011 1v10z"
                         />
                       </svg>
-                      Dashboard
+                      User dashboard
                     </NavLink>
                   </li>
                 ) : (

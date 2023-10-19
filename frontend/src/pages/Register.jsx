@@ -1,3 +1,5 @@
+import { NavLink } from "react-router-dom";
+
 const Register = () => {
   return (
     <div className="flex items-center justify-center h-[70vh]">
@@ -80,12 +82,12 @@ const Register = () => {
             </button>
             <p className="text-sm font-light text-gray-500 dark:text-gray-400">
               Already have an account?{" "}
-              <a
-                href="#"
+              <NavLink
+                to="/login"
                 className="font-medium text-button hover:underline dark:text-primary-500"
               >
                 Login here
-              </a>
+              </NavLink>
             </p>
           </form>
         </div>

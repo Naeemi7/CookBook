@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { NavLink } from "react-router-dom";
+
 import guestProfile from "../assets/images/navbar/profile.png";
 import logo from "../assets/images/navbar/logo.png";
 
@@ -50,7 +52,7 @@ const Navbar = () => {
           <div className="relative w-full">
             <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
               <svg
-                className="w-4 h-4 text-gray-500 dark:text-"
+                className="w-4 h-4 text-gray-500 dark:text-gray-400"
                 aria-hidden="true"
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -75,7 +77,7 @@ const Navbar = () => {
           </div>
           <button
             type="submit"
-            className="p-2.5 ml-2 text-sm font-medium text-white bg-cards rounded-lg  hover:bg-button focus:ring-2 focus:outline-none focus:ring-cards dark:bg- dark:hover-bg-cards"
+            className="p-2.5 ml-2 text-sm font-medium text-white bg-cards rounded-lg  hover:bg-button focus:ring-2 focus:outline-none focus:ring-cards dark:bg-cards dark:hover-bg-cards"
           >
             <svg
               className="w-4 h-4"
@@ -123,36 +125,110 @@ const Navbar = () => {
 
               <ul>
                 <li>
-                  <a
-                    href="#"
-                    className="block px-4 py-2 text-sm text-gray-700 hover:bg-button dark:hover-bg-gray-600 dark:text-gray-200 dark:hover-text-white rounded-lg"
+                  <NavLink
+                    to="/dashboard"
+                    className="block px-4 py-2 text-sm text-gray-700 hover:bg-cards dark:hover-bg-gray-600 dark:text-gray-200 dark:hover-text-white rounded-lg"
                   >
+                    <svg
+                      className="w-4 h-4 inline mr-2"
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="2"
+                        d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+                      />
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="2"
+                        d="M19 20a1 1 0 01-1 1H6a1 1 0 01-1-1V9a1 1 0 011-1h7l2-3h4a1 1 0 011 1v10z"
+                      />
+                    </svg>
                     Dashboard
-                  </a>
+                  </NavLink>
                 </li>
                 <li>
-                  <a
-                    href="#"
-                    className="block px-4 py-2 text-sm text-gray-700 hover:bg-button dark:hover-bg-gray-600 dark:text-gray-200 dark:hover-text-white rounded-lg"
+                  <NavLink
+                    to="/login"
+                    className="block px-4 py-2 text-sm text-gray-700 hover:bg-cards dark:hover-bg-gray-600 dark:text-gray-200 dark:hover-text-white rounded-lg"
                   >
+                    <svg
+                      className="w-4 h-4 inline mr-2"
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="2"
+                        d="M16 3.51a2.5 2.5 0 00-3.54 0l-6 6a2.5 2.5 0 00-.73 1.77v5a2.5 2.5 0 002.5 2.5h10a2.5 2.5 0 002.5-2.5v-5a2.5 2.5 0 00-.73-1.77l-6-6z"
+                      />
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="2"
+                        d="M17 16v2a2 2 0 01-2 2H9a2 2 0 01-2-2v-2"
+                      />
+                    </svg>
                     Sign in
-                  </a>
+                  </NavLink>
                 </li>
                 <li>
-                  <a
-                    href="#"
-                    className="block px-4 py-2 text-sm text-gray-700 hover:bg-button dark:hover-bg-gray-600 dark:text-gray-200 dark:hover-text-white rounded-lg"
+                  <NavLink
+                    to="/register"
+                    className="block px-4 py-2 text-sm text-gray-700 hover:bg-cards dark:hover-bg-gray-600 dark:text-gray-200 dark:hover-text-white rounded-lg"
                   >
+                    <svg
+                      className="w-4 h-4 inline mr-2"
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="2"
+                        d="M6 18L18 6M6 6l12 12"
+                      />
+                    </svg>
                     Sign up
-                  </a>
+                  </NavLink>
                 </li>
                 <li>
-                  <a
-                    href="#"
-                    className="block px-4 py-2 text-sm text-gray-700 hover:bg-button dark:hover-bg-gray-600 dark:text-gray-200 dark:hover-text-white rounded-lg"
+                  <NavLink
+                    to="/logout"
+                    className="block px-4 py-2 text-sm text-gray-700 hover:bg-cards dark:hover-bg-gray-600 dark:text-gray-200 dark:hover-text-white rounded-lg"
                   >
+                    <svg
+                      className="w-4 h-4 inline mr-2"
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="2"
+                        d="M9 2l-5 5a5 5 0 007 7l-1.414 1.414a2 2 0 01-2.828 0L2 10"
+                      />
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="2"
+                        d="M15 22l5-5a5 5 0 00-7-7l1.414-1.414a2 2 0 012.828 0L22 14"
+                      />
+                    </svg>
                     Sign out
-                  </a>
+                  </NavLink>
                 </li>
               </ul>
             </div>
@@ -162,7 +238,7 @@ const Navbar = () => {
         {/* Burger Menu Button */}
         <button
           type="button"
-          className="inline-flex items-center  p-2 w-10 h-10 justify-center text-sm text-gray-00 rounded-lg md:hidden hover-bg-gray-100 focus-outline-none focus-ring-2 focus-ring-gray-200 dark-text-gray-400 dark-hover-bg-gray-700 dark-focus-ring-gray-600"
+          className="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-00 rounded-lg md:hidden hover-bg-gray-100 focus-outline-none focus-ring-2 focus-ring-gray-200 dark-text-gray-400 dark-hover-bg-gray-700 dark-focus-ring-gray-600"
           onClick={() => setMenuOpen(!isMenuOpen)}
         >
           <span className="sr-only">Open main menu</span>

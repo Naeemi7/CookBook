@@ -10,12 +10,14 @@ const RecipeProvider = ({ children }) => {
       try {
         const response = await recipeAPI.get("/");
         console.log(response);
-        setRecipe(response.data);
+        setRecipe(response.data.recipes);
       } catch (error) {
         console.log(error);
       }
     };
-  });
+    getAllRecipes();
+  }, []);
+
   return (
     <cookBookContext.Provider value={{ recipe }}>
       {children}

@@ -5,6 +5,7 @@ import Register from "./pages/Register";
 import Login from "./pages/Login";
 import Logout from "./pages/Logout";
 import Dashboard from "./pages/Dashboard";
+import Recipe from "./components/Recipe";
 import UserProvider from "./provider/UserProvider";
 import RecipeProvider from "./provider/RecipeProvider";
 
@@ -15,6 +16,7 @@ function App() {
         <UserProvider>
           <RecipeProvider>
             <Navbar />
+            <Recipe />
             <Routes>
               <Route path="/login" element={<Login />} />
               <Route path="/register" element={<Register />} />

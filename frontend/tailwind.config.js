@@ -7,9 +7,9 @@ export default {
         // Add your custom colors here
         header: "#a9b6b6",
         footer: "#71757a",
-        button: "#e3b905",
+        button: "#262f0d",
         background: "#e3ece2",
-        cards: "#262f0d",
+        cards: "#e3b905",
       },
     },
   },

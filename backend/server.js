@@ -20,8 +20,9 @@ app.use(cookieParser());
 
 // Setting up CORS
 const corsOptions = {
-  origin: "*", // Change this to the allowed origin(s) in your production environment
+  origin: "http://localhost:5173",
   methods: ["HEAD", "GET", "POST", "PATCH", "DELETE", "PUT"],
+  credentials: true,
 };
 
 app.use(cors(corsOptions));

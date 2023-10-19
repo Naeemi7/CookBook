@@ -4,17 +4,20 @@ import Footer from "./components/Footer";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
+import UserProvider from "./provider/UserProvider";
 
 function App() {
   return (
     <>
       <BrowserRouter>
-        <Navbar />
-        <Routes>
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/dashboard" element={<Dashboard />} />
-        </Routes>
+        <UserProvider>
+          <Navbar />
+          <Routes>
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
+            <Route path="/dashboard" element={<Dashboard />} />
+          </Routes>
+        </UserProvider>
 
         <Footer />
       </BrowserRouter>

@@ -11,6 +11,7 @@ const userAPI = axios.create({
   headers: {
     "Content-Type": "application/json",
   },
+  withCredentials: true,
 });
 
 console.log(process.env.NODE_ENV);

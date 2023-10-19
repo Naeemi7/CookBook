@@ -1,6 +1,28 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
+import useUserContext from "../context/useUserContext";
 
 const Login = () => {
+  const { loginUser } = useUserContext();
+  const navigate = useNavigate();
+
+  const handleLogin = async (event) => {
+    event.preventDefault();
+
+    const formData = new FormData(event.target);
+
+    const data = {
+      email: formData.get("email"),
+      password: formData.get("password"),
+    };
+
+    try {
+      await loginUser(data);
+      navigate("/dashboard");
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+
   return (
     <div className="flex items-center justify-center h-[70vh]">
       <div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-cards dark:border-gray-700">
@@ -8,7 +30,7 @@ const Login = () => {
           <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
             Sign in to your account
           </h1>
-          <form className="space-y-4 md:space-y-6" action="#">
+          <form className="space-y-4 md:space-y-6" onSubmit={handleLogin}>
             <div>
               <label
                 htmlFor="email"

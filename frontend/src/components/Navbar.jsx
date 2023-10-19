@@ -121,10 +121,10 @@ const Navbar = () => {
               className={`z-50 absolute right-0 mt-4 text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-footer ${dropdownWidth} dark:divide-gray-600`}
             >
               <div className="px-4 py-3 ">
-                <span className="block text-sm text-gray-900 dark:text-white">
+                <span className="block text-base text-gray-900 dark:text-button font-weight:700">
                   {loggedIn ? `${user.firstname} ${user.lastname}` : "Guest"}
                 </span>
-                <span className="block text-sm text-gray-500 truncate dark:text-gray-400">
+                <span className="block text-base text-gray-900 dark:text-button font-weight:700">
                   {loggedIn ? `${user.email} ` : null}
                 </span>
               </div>
@@ -193,7 +193,7 @@ const Navbar = () => {
                   <li>
                     <NavLink
                       to="/logout"
-                      className="block px-4 py-2 text-sm text-gray-700 hover-bg-cards dark:hover-bg-gray-600 dark:text-gray-200 dark:hover-text-white rounded-lg"
+                      className="block px-4 py-2 text-sm text-gray-700 hover:bg-cards dark:hover-bg-gray-600 dark:text-gray-200 dark:hover-text-white rounded-lg"
                     >
                       <svg
                         className="w-4 h-4 inline mr-2"
@@ -222,7 +222,7 @@ const Navbar = () => {
                   <li>
                     <NavLink
                       to="/register"
-                      className="block px-4 py-2 text-sm text-gray-700 hover-bg-cards dark:hover-bg-gray-600 dark:text-gray-200 dark:hover-text-white rounded-lg"
+                      className="block px-4 py-2 text-sm text-gray-700 hover:bg-cards dark:hover-bg-gray-600 dark:text-gray-200 dark:hover-text-white rounded-lg"
                     >
                       <svg
                         className="w-4 h-4 inline mr-2"

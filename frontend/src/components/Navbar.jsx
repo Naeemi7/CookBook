@@ -12,7 +12,7 @@ const Navbar = () => {
         {/* Logo section */}
         <a href="#" className="flex items-center">
           <img src={logo} className="h-12 mr-3" alt="Cook book logo" />
-          <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-button">
+          <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-cards">
             CookBook
           </span>
         </a>
@@ -21,7 +21,7 @@ const Navbar = () => {
         <div className="md:hidden">
           <button
             type="button"
-            className="p-2.5 ml-2 text-sm font-medium text-white bg-cards rounded-lg hover:bg-cards focus:ring-2 focus:outline-none focus:ring-button dark:bg-button dark:hover-bg-cards"
+            className="p-2.5 ml-2 text-sm font-medium text-white bg-cards rounded-lg hover:bg-cards focus:ring-2 focus:outline-none focus:ring-button dark:bg-cards dark:hover-bg-cards"
           >
             <svg
               className="w-4 h-4"
@@ -68,14 +68,14 @@ const Navbar = () => {
             <input
               type="text"
               id="simple-search"
-              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-2xl focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5 dark:bg-button dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 2xl:w-[400px]"
+              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-2xl focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5 dark:bg-cards dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 2xl:w-[400px]"
               placeholder="Search Recipe..."
               required
             />
           </div>
           <button
             type="submit"
-            className="p-2.5 ml-2 text-sm font-medium text-white bg-cards rounded-lg  hover:bg-cards focus:ring-2 focus:outline-none focus:ring-button dark:bg-button dark:hover-bg-cards"
+            className="p-2.5 ml-2 text-sm font-medium text-white bg-cards rounded-lg  hover:bg-button focus:ring-2 focus:outline-none focus:ring-cards dark:bg- dark:hover-bg-cards"
           >
             <svg
               className="w-4 h-4"

@@ -1,10 +1,13 @@
 import { NavLink, useNavigate } from "react-router-dom";
 import useUserContext from "../context/useUserContext";
-import Swal from "sweetalert2";
+import useSwal from "../hooks/ShowSwal";
 
 const Login = () => {
   const { loginUser, error } = useUserContext();
   const navigate = useNavigate();
+
+  // Use the showSwal function from the custom hook
+  const { showSwal } = useSwal();
 
   const handleLogin = async (event) => {
     event.preventDefault();
@@ -20,33 +23,42 @@ const Login = () => {
       await loginUser(data);
 
       if (error) {
-        Swal.fire({
-          position: "top-end",
-          icon: "error",
-          title: "Oops...",
-          text: error, // Display the error message from your context
-          showConfirmButton: false,
-          timer: 5000,
-        });
+        showSwal("error", "Oops...", error);
       } else {
-        Swal.fire({
-          position: "top-end",
-          icon: "success",
-          title: "Login Successful",
-          showConfirmButton: false,
-          background: "#262f0d",
-          timer: 2000,
-        });
-
-        // Timeout before navigating to the dashboard
+        showSwal("success", "Login Successful", null, "#262f0d", 2000);
         setTimeout(() => {
           navigate("/");
         }, 2000);
       }
-    } catch (error) {
-      console.log(error.message);
+    } catch (err) {
+      // Log the specific error message
+      console.log(err.message);
+
+      // Handle specific error cases
+      if (err.response) {
+        if (err.response.status === 401) {
+          showSwal(
+            "error",
+            "Login Failed",
+            "Either your email or password is incorrect"
+          );
+        } else if (err.response.status === 403) {
+          showSwal(
+            "error",
+            "Login Failed",
+            "You don't have permission to log in"
+          );
+        }
+      } else {
+        showSwal(
+          "error",
+          "Login Failed",
+          "An unknown error occurred while logging in"
+        );
+      }
     }
   };
+
   return (
     <div className="flex items-center justify-center h-[70vh]">
       <div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-cards dark:border-gray-700">

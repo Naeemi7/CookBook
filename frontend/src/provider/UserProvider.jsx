@@ -14,24 +14,20 @@ const UserProvider = ({ children }) => {
   const loginUser = async (data) => {
     try {
       const response = await userAPI.post("/login", data);
-      console.log(response);
-      if (response.status === 200) {
-        setLoggedIn(true);
-        setUser(response.data.user);
-        setError(""); // Clear any previous error.
-      } else if (response.status === 401) {
+      setUser(response.data.user);
+      setLoggedIn(true);
+    } catch (err) {
+      const { status } = err.response;
+
+      setLoggedIn(false);
+
+      if (status === 401) {
         setError("Either your email or password is incorrect");
-      } else if (response.status === 403) {
-        setError("You do not have permission to log in.");
+      } else if (status === 403) {
+        setError("You don't have permission to log in");
       } else {
         setError("An unknown error occurred while logging in.");
       }
-    } catch (err) {
-      setError("An error occurred while logging in.");
-      console.error(err.message);
-
-      setLoggedIn(false);
-      setUser("");
     }
   };
 

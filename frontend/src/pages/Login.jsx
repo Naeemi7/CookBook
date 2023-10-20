@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import useUserContext from "../context/useUserContext";
 import useSwal from "../hooks/ShowSwal";
@@ -5,6 +6,7 @@ import useSwal from "../hooks/ShowSwal";
 const Login = () => {
   const { loginUser, error } = useUserContext();
   const navigate = useNavigate();
+  const [storeCookies, setStoreCookies] = useState(false); // State to track user's choice
 
   // Use the showSwal function from the custom hook
   const { showSwal } = useSwal();
@@ -20,7 +22,13 @@ const Login = () => {
     };
 
     try {
-      await loginUser(data);
+      if (storeCookies) {
+        // If the user chose to store cookies
+        await loginUser(data);
+      } else {
+        // If not, store the data in local storage
+        localStorage.setItem("tempUser", JSON.stringify(data));
+      }
 
       if (error) {
         showSwal("error", "Oops...", error, 2000);
@@ -94,6 +102,22 @@ const Login = () => {
                 placeholder="••••••••"
                 required
               />
+            </div>
+            <div>
+              <label
+                htmlFor="storeCookies"
+                className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+              >
+                Store Cookies
+              </label>
+              <input
+                type="checkbox"
+                name="storeCookies"
+                id="storeCookies"
+                onChange={(e) => setStoreCookies(e.target.checked)}
+                className="mr-2"
+              />
+              Allow storing cookies
             </div>
 
             <button

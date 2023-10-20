@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import userContext from "../context/userContext";
 import userAPI from "../api/userAPI";
 
@@ -6,6 +6,15 @@ const UserProvider = ({ children }) => {
   const [loggedIn, setLoggedIn] = useState(false);
   const [user, setUser] = useState(null);
   const [error, setError] = useState("");
+
+  //Checks if user already logged in on component mount
+  useEffect(() => {
+    const storedUser = localStorage.getItem("user");
+    if (storedUser) {
+      setUser(JSON.parse(storedUser));
+      setLoggedIn(true);
+    }
+  }, []);
 
   /**
    * Handles the user login
@@ -17,6 +26,9 @@ const UserProvider = ({ children }) => {
       setUser(response.data.user);
       setLoggedIn(true);
       setError(""); // Clear any previous errors
+
+      //Stores the user data in localStorage
+      localStorage.setItem("user", JSON.stringify(response.data.user));
     } catch (err) {
       const { status } = err.response || {};
       setLoggedIn(false);
@@ -38,6 +50,9 @@ const UserProvider = ({ children }) => {
     try {
       await userAPI.get("/logout");
       setLoggedIn(false);
+
+      //Removes user data from localStorage after logout
+      localStorage.removeItem("user");
     } catch (err) {
       setError("An error occurred while logging out.");
       console.error(err.message);

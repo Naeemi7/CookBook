@@ -44,9 +44,19 @@ const UserProvider = ({ children }) => {
     }
   };
 
+  const registerUser = async (data) => {};
+
   return (
     <userContext.Provider
-      value={{ loggedIn, setLoggedIn, loginUser, user, error, logout }}
+      value={{
+        loggedIn,
+        setLoggedIn,
+        loginUser,
+        user,
+        error,
+        logout,
+        registerUser,
+      }}
     >
       {children}
     </userContext.Provider>

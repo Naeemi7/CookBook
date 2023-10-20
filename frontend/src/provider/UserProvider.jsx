@@ -7,7 +7,7 @@ const UserProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [error, setError] = useState("");
 
-  //Checks if user already logged in on component mount
+  // Checks if the user is already logged in on component mount
   useEffect(() => {
     const storedUser = localStorage.getItem("user");
     if (storedUser) {
@@ -18,7 +18,7 @@ const UserProvider = ({ children }) => {
 
   /**
    * Handles the user login
-   * @param {*} data
+   * @param {Object} data - The user's login data
    */
   const loginUser = async (data) => {
     try {
@@ -27,8 +27,11 @@ const UserProvider = ({ children }) => {
       setLoggedIn(true);
       setError(""); // Clear any previous errors
 
-      //Stores the user data in localStorage
+      // Store the user data in localStorage
       localStorage.setItem("user", JSON.stringify(response.data.user));
+
+      // Store the authentication token in a cookie
+      document.cookie = `token=${response.data.token}; path=/`;
     } catch (err) {
       const { status } = err.response || {};
       setLoggedIn(false);
@@ -51,8 +54,12 @@ const UserProvider = ({ children }) => {
       await userAPI.get("/logout");
       setLoggedIn(false);
 
-      //Removes user data from localStorage after logout
+      // Remove user data from localStorage after logout
       localStorage.removeItem("user");
+
+      // Remove the authentication token from the cookie
+      document.cookie =
+        "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
     } catch (err) {
       setError("An error occurred while logging out.");
       console.error(err.message);

@@ -10,7 +10,15 @@ import User from "../models/User.js";
  */
 export const createRecipe = async (req, res) => {
   try {
-    const { title, description, ingredients } = req.body;
+    const {
+      title,
+      description,
+      ingredients,
+      time,
+      type,
+      category,
+      instructions,
+    } = req.body;
     const userId = req.params.userId;
 
     // Check if the user with the given ID exists
@@ -22,21 +30,25 @@ export const createRecipe = async (req, res) => {
         .json({ error: "User not found" });
     }
 
-    //Create new Recipe
+    // Create a new Recipe
     const newRecipe = await Recipe.create({
       title,
       description,
       ingredients,
-      user: user._id, //User reference to user's ID
+      time,
+      type,
+      category,
+      instructions,
+      user: user._id,
     });
 
     return res
       .status(StatusCodes.OK)
-      .json({ mesage: "The recipe has been saved!", newRecipe });
+      .json({ message: "The recipe has been saved!", newRecipe });
   } catch (error) {
     return res
       .status(StatusCodes.INTERNAL_SERVER_ERROR)
-      .json({ error: "Something went wrong", error: error.message });
+      .json({ error: "Something went wrong", errorMessage: error.message });
   }
 };
 

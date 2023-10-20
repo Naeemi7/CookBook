@@ -18,4 +18,10 @@ export const validateRecipe = [
 
   //Sanitazes the recipe ingredients
   body("ingredients").isAlphanumeric(),
+
+  //Sanitizes the recipe time
+  body("time")
+    .trim()
+    .isNumeric()
+    .withMessage("The Cooking time has to below number"),
 ];

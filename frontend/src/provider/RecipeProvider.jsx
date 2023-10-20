@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import cookBookContext from "../context/cookBookContext";
+import recipeContext from "../context/recipeContext";
 import recipeAPI from "../api/recipeAPI";
 
 const RecipeProvider = ({ children }) => {
@@ -19,9 +19,9 @@ const RecipeProvider = ({ children }) => {
   }, []);
 
   return (
-    <cookBookContext.Provider value={{ recipe }}>
+    <recipeContext.Provider value={{ recipe }}>
       {children}
-    </cookBookContext.Provider>
+    </recipeContext.Provider>
   );
 };
 

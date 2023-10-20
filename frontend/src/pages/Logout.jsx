@@ -1,10 +1,10 @@
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
-import useCookBookContext from "../context/useCookBookContext";
+import useUserContext from "../context/useUserContext";
 
 const Logout = () => {
   const navigate = useNavigate();
-  const { logout } = useCookBookContext();
+  const { logout } = useUserContext();
 
   useEffect(() => {
     navigate("/login");

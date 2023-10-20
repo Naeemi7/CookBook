@@ -16,8 +16,9 @@ function App() {
         <UserProvider>
           <RecipeProvider>
             <Navbar />
-            <Recipe />
+
             <Routes>
+              <Route path="/" element={<Recipe />} />
               <Route path="/login" element={<Login />} />
               <Route path="/register" element={<Register />} />
               <Route path="/dashboard" element={<Dashboard />} />

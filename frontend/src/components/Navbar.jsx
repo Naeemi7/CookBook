@@ -1,11 +1,11 @@
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
-import useCookBookContext from "../context/useCookBookContext";
+import useUserContext from "../context/useUserContext";
 import guestProfile from "../assets/images/navbar/profile.png";
 import logo from "../assets/images/navbar/logo.png";
 
 const Navbar = () => {
-  const { loggedIn, user } = useCookBookContext();
+  const { loggedIn, user } = useUserContext();
   const [isProfileOpen, setProfileOpen] = useState(false);
   const [isMenuOpen, setMenuOpen] = useState(false);
 

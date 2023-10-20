@@ -1,5 +1,5 @@
 import { useState } from "react";
-import cookBookContext from "../context/cookBookContext";
+import userContext from "../context/userContext";
 import userAPI from "../api/userAPI";
 
 const UserProvider = ({ children }) => {
@@ -49,11 +49,11 @@ const UserProvider = ({ children }) => {
   };
 
   return (
-    <cookBookContext.Provider
+    <userContext.Provider
       value={{ loggedIn, setLoggedIn, loginUser, user, error, logout }}
     >
       {children}
-    </cookBookContext.Provider>
+    </userContext.Provider>
   );
 };
 

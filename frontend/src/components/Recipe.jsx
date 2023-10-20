@@ -1,8 +1,7 @@
-import React from "react";
-import useCookBookContext from "../context/useCookBookContext";
+import useRecipeContext from "../context/useRecipeContext";
 
 const Recipe = () => {
-  const { recipe } = useCookBookContext();
+  const { recipe } = useRecipeContext();
 
   if (!Array.isArray(recipe)) {
     // Handle the case where recipe is not an array

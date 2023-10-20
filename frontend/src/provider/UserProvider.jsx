@@ -14,7 +14,7 @@ const UserProvider = ({ children }) => {
   const loginUser = async (data) => {
     try {
       const response = await userAPI.post("/login", data);
-
+      console.log(response);
       if (response.status === 200) {
         setLoggedIn(true);
         setUser(response.data.user);

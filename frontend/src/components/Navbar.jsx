@@ -7,7 +7,6 @@ import logo from "../assets/images/navbar/logo.png";
 const Navbar = () => {
   const { loggedIn, user } = useUserContext();
   const [isProfileOpen, setProfileOpen] = useState(false);
-  const [isMenuOpen, setMenuOpen] = useState(false);
 
   //width of the drop down
   const dropdownWidth = "w-56";

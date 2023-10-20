@@ -3,6 +3,8 @@ import dotenv from "dotenv";
 import mongoose from "mongoose";
 import cors from "cors";
 import cookieParser from "cookie-parser";
+import multer from "multer";
+import cloudinary from "cloudinary";
 
 import userRoutes from "./routes/userRoutes.js";
 import recipeRoutes from "./routes/recipeRoutes.js";
@@ -17,6 +19,13 @@ const port = 3000;
 app.use(express.json());
 
 app.use(cookieParser());
+
+// Initializing Cloudinary
+cloudinary.config({
+  cloud_name: process.env.CLOUD_NAME,
+  api_key: process.env.API_KEY,
+  api_secret: process.env.API_SECRET,
+});
 
 // Setting up CORS
 const corsOptions = {

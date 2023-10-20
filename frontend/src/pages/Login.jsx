@@ -23,32 +23,28 @@ const Login = () => {
       await loginUser(data);
 
       if (error) {
-        showSwal("error", "Oops...", error);
+        showSwal("error", "Oops...", error, 2000);
       } else {
-        showSwal("success", "Login Successful", null, "#262f0d", 2000);
+        showSwal("success", "Login Successful", null, 2000);
         setTimeout(() => {
           navigate("/");
         }, 2000);
       }
     } catch (err) {
-      // Log the specific error message
       console.log(err.message);
 
-      // Handle specific error cases
-      if (err.response) {
-        if (err.response.status === 401) {
-          showSwal(
-            "error",
-            "Login Failed",
-            "Either your email or password is incorrect"
-          );
-        } else if (err.response.status === 403) {
-          showSwal(
-            "error",
-            "Login Failed",
-            "You don't have permission to log in"
-          );
-        }
+      if (err.response && err.response.status === 401) {
+        showSwal(
+          "error",
+          "Login Failed",
+          "Either your email or password is incorrect"
+        );
+      } else if (err.response && err.response.status === 403) {
+        showSwal(
+          "error",
+          "Login Failed",
+          "You don't have permission to log in"
+        );
       } else {
         showSwal(
           "error",

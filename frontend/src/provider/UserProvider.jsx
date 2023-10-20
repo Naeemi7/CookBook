@@ -4,7 +4,7 @@ import userAPI from "../api/userAPI";
 
 const UserProvider = ({ children }) => {
   const [loggedIn, setLoggedIn] = useState(false);
-  const [user, setUser] = useState("");
+  const [user, setUser] = useState(null);
   const [error, setError] = useState("");
 
   /**
@@ -16,9 +16,9 @@ const UserProvider = ({ children }) => {
       const response = await userAPI.post("/login", data);
       setUser(response.data.user);
       setLoggedIn(true);
+      setError(""); // Clear any previous errors
     } catch (err) {
-      const { status } = err.response;
-
+      const { status } = err.response || {};
       setLoggedIn(false);
 
       if (status === 401) {

@@ -44,7 +44,14 @@ const UserProvider = ({ children }) => {
     }
   };
 
-  const registerUser = async (data) => {};
+  const registerUser = async (data) => {
+    try {
+      const response = await userAPI.post("/register", data);
+      console.log(response);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <userContext.Provider

@@ -29,17 +29,12 @@ const UserProvider = ({ children }) => {
 
       // Store the user data in localStorage
       localStorage.setItem("user", JSON.stringify(response.data.user));
-
-      // Store the authentication token in a cookie
-      document.cookie = `token=${response.data.token}; path=/`;
     } catch (err) {
-      const { status } = err.response || {};
       setLoggedIn(false);
+      console.log(err.response.status);
 
-      if (status === 401) {
+      if (err.response.status === 401) {
         setError("Either your email or password is incorrect");
-      } else if (status === 403) {
-        setError("You don't have permission to log in");
       } else {
         setError("An unknown error occurred while logging in.");
       }
@@ -56,10 +51,6 @@ const UserProvider = ({ children }) => {
 
       // Remove user data from localStorage after logout
       localStorage.removeItem("user");
-
-      // Remove the authentication token from the cookie
-      document.cookie =
-        "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
     } catch (err) {
       setError("An error occurred while logging out.");
       console.error(err.message);

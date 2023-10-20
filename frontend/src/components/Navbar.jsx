@@ -108,6 +108,7 @@ const Navbar = () => {
             type="button"
             className="flex mr-3 text-sm bg-header border border-gray-200 rounded-full md:mr-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600"
             onClick={() => setProfileOpen(!isProfileOpen)}
+            /*   onMouseLeave={() => setProfileOpen(false)} */
           >
             <span className="sr-only">Open user menu</span>
             <img
@@ -119,6 +120,7 @@ const Navbar = () => {
           {isProfileOpen && (
             <div
               className={`z-50 absolute right-0 mt-4 text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-footer ${dropdownWidth} dark:divide-gray-600`}
+              onMouseLeave={() => setProfileOpen(false)}
             >
               <div className="px-4 py-3 ">
                 <span className="block text-base text-gray-900 dark:text-button font-weight:700">

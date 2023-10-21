@@ -9,7 +9,7 @@ function Dashboard() {
     >
       {/* Profile Card */}
       <ProfileCard />
-      <div className="h-full px-3 py-4 overflow-y-auto bg-gray-50 dark:bg-cards">
+      <div className="h-full px-3 py-4 overflow-y-auto dark:bg-gray-800 dark:border-gray-700">
         <ul className="space-y-2 font-medium">
           <li>
             <a

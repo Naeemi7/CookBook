@@ -1,0 +1,32 @@
+.recipe-card-container {
+  max-width: 100rem;
+  width: 80vw;
+
+  margin: 2rem auto;
+  border: 1px solid green;
+  display: flex;
+
+  .card-container {
+    border-radius: 1rem;
+    width: 23rem;
+    background-color: orange;
+    padding: 1rem;
+    .recipe-image-container {
+      position: relative;
+
+      img {
+        border-radius: 1rem;
+      }
+
+      .action-icons {
+        display: flex;
+        gap: 2rem;
+        font-size: 2rem;
+
+        .like-btn {
+          color: red;
+        }
+      }
+    }
+  }
+}

@@ -10,6 +10,7 @@ export default {
         cards: "#262f0d",
         background: "#e3ece2",
         button: "#e3b905",
+        sidebar: "#98a4a4",
       },
     },
   },

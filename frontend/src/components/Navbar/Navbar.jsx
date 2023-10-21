@@ -8,12 +8,12 @@ const Navbar = () => {
   const { loggedIn, user } = useUserContext();
   const [isProfileOpen, setProfileOpen] = useState(false);
 
-  //width of the drop down
+  // width of the drop-down
   const dropdownWidth = "w-56";
 
   return (
     <nav className="fixed top-0 z-50 w-full bg-white border-b border-gray-200 dark:bg-gray-800 dark:border-gray-700">
-      <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+      <div className="max-w-screen-xl flex items-center justify-between mx-auto p-4">
         {/* Logo section */}
         <NavLink to="/" className="flex items-center">
           <img src={logo} className="h-12 mr-3" alt="Cookbook logo" />
@@ -21,6 +21,21 @@ const Navbar = () => {
             CookBook
           </span>
         </NavLink>
+
+        {/* Search input */}
+        {/*   <div className="relative">
+          <input
+            type="text"
+            placeholder="Search..."
+            className="w-56 px-3 py-2 mr-3 text-sm border border-gray-300 rounded-md focus:ring-2 focus:ring-gray-300 dark:focus:ring-gray-600"
+          />
+          <button
+            type="button"
+            className="text-sm bg-gray-800 rounded-full md:mr-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600"
+          >
+            Search
+          </button>
+        </div> */}
 
         {/* Profile section with Border on Profile Image */}
         <div className="relative">
@@ -41,7 +56,7 @@ const Navbar = () => {
               className={`z-50 absolute right-0 mt-4 text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700  ${dropdownWidth} dark:divide-gray-600`}
               onMouseLeave={() => setProfileOpen(false)}
             >
-              <div className="px-4 py-3 ">
+              <div className="px-4 py-3">
                 <span className="block text-base text-gray-900 dark:text-button font-weight:700">
                   {loggedIn ? `${user.firstname} ${user.lastname}` : "Guest"}
                 </span>
@@ -97,7 +112,7 @@ const Navbar = () => {
                           strokeLinecap="round"
                           strokeLinejoin="round"
                           strokeWidth="2"
-                          d="M16 3.51a2.5 2.5 0 00-3.54 0l-6 6a2.5 2.5 0 00-.73 1.77v5a2.5 2.5 0 002.5 2.5h10a2.5 2.5 0 002.5-2.5v-5a2.5 2.5 0 00-.73-1.77l-6-6z"
+                          d="M16 3.51a2.5 2.5 0 00-3.54 0l-6 6a2.5 2.5 0 00-.73 1.77v5a2.5 2.5 0 002.5 2.5h10a2.5 2.5 0 002.5-2.5v-2"
                         />
                         <path
                           strokeLinecap="round"
@@ -114,7 +129,7 @@ const Navbar = () => {
                   <li>
                     <NavLink
                       to="/logout"
-                      className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
+                      className="block px-4 py-2 text-sm text-gray-700 hover.bg-gray-100 dark:hover.bg-gray-600 dark:text-gray-200 dark:hover.text-white"
                     >
                       <svg
                         className="w-4 h-4 inline mr-2"
@@ -143,7 +158,7 @@ const Navbar = () => {
                   <li>
                     <NavLink
                       to="/register"
-                      className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
+                      className="block px-4 py-2 text-sm text-gray-700 hover.bg-gray-100 dark:hover.bg-gray-600 dark:text-gray-200 dark:hover.text-white"
                     >
                       <svg
                         className="w-4 h-4 inline mr-2"

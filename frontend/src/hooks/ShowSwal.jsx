@@ -8,7 +8,6 @@ const useSwal = () => {
       title: title,
       text: text,
       showConfirmButton: false,
-      background: "#8b9094",
       timer: timer,
     });
   };

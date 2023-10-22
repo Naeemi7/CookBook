@@ -97,7 +97,7 @@ const ProfileCard = () => {
 
         <button
           type="button"
-          className="text-gray-900 bg-button hover:bg-button mt-5 focus:outline-none  font-medium rounded-lg text-sm px-4 py-2 text-center inline-flex items-center dark:bg-button dark:hover:bg-header "
+          className="text-gray-700 bg-button hover:bg-button mt-5 focus:outline-none  font-medium rounded-lg text-sm px-4 py-2 text-center inline-flex items-center dark:bg-button dark:hover:bg-header "
         >
           Update
           <FaCloudArrowUp className="w-4 h-4 ml-2" />

@@ -16,9 +16,6 @@ export const validateRecipe = [
     .trim()
     .customSanitizer((value) => uppercaseFirstLetter(value)),
 
-  //Sanitazes the recipe ingredients
-  body("ingredients").isAlphanumeric(),
-
   //Sanitizes the recipe time
   body("time")
     .trim()

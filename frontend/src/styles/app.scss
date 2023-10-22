@@ -12,5 +12,7 @@
 
   .recipe-wrapper {
     margin-top: 2.5rem;
+    display: flex;
+    flex-direction: column;
   }
 }

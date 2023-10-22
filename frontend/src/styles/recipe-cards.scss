@@ -19,7 +19,10 @@ h5 {
   margin-top: 0;
   margin-bottom: 0;
 }
-
+.recipe-cards {
+  display: flex;
+  gap: 2.5rem;
+}
 /* Card-hover */
 .card-hover {
   $root: &;

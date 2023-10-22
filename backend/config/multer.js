@@ -4,30 +4,31 @@ import bytes from "bytes";
 //Specifying the Storage
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, "../uploads");
+    //where to store the file
+    cb(null, "./uploads");
   },
 
   //Randomize the name of the file
-  filename: function (req, file, cb) {
-    cb(null, Date.now() + "-" + file.originalname);
+  filename: (req, file, callback) => {
+    const ext = file.mimetype.split("/")[1];
+    const originalNameExtension = file.originalname.split(".")[0];
+
+    callback(null, `${originalNameExtension}-${Date.now()}.${ext}`);
   },
 });
 
-//File Validation
-const fileFilter = (req, file, cb) => {
-  if (file.mimetype === "image/jpeg" || file.mimetype === "image/png") {
-    //Allow the image types: jpeg and png
-    cb(null, true);
-  } else {
-    //Prevents upload
-    cb({ message: "Unsupported File Type" }, false);
-  }
-};
-
 const upload = multer({
   storage: storage,
-  limits: { fileSize: bytes() },
-  fileFilter: fileFilter,
+  limits: { fileSize: bytes("1MB") },
+  fileFilter: (req, file, cb) => {
+    if (file.mimetype === "image/jpeg" || file.mimetype === "image/png") {
+      //Allow the image types: jpeg or png
+      cb(null, true);
+    } else {
+      //Prevent upload
+      cb({ error: "Unsupported File Type" }, false);
+    }
+  },
 });
 
 export default upload;

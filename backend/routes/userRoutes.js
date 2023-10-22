@@ -3,11 +3,11 @@ import {
   createUser,
   loginUser,
   logoutUser,
+  updateProfile,
 } from "../controllers/userController.js";
 import { validateUserRules } from "../middleware/userSanitizer.js";
 import { validator } from "../middleware/validator.js";
-/* import { uploadImageMiddleware } from "../middleware/uploadImage.js";
-import upload from "../multer/multer.js"; */
+import upload from "../config/multer.js";
 
 const router = express.Router();
 
@@ -16,7 +16,6 @@ router.post("/register", validateUserRules, validator, createUser);
 router.post("/login", loginUser);
 router.get("/logout", logoutUser);
 
-/* // Upload profile image route
-router.post("/upload-profile", upload.array("profile"), uploadImageMiddleware); */
+router.post("/upload-profile/:userId", upload.single("image"), updateProfile);
 
 export default router;

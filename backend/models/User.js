@@ -16,7 +16,7 @@ const userSchema = new Schema(
     profileImage: {
       imageName: { type: String },
       imagePath: { type: String },
-      fileMimetype: { type: String },
+      imageMimetype: { type: String },
       size: { type: Number },
     },
   },

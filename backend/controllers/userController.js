@@ -3,6 +3,16 @@ import User from "../models/User.js";
 import bcrypt from "bcrypt";
 import { generateJwt } from "../helpers/jwt.js";
 
+import { fileURLToPath } from "url";
+import path, { dirname } from "path";
+
+console.log("import file name", import.meta.url);
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+
+console.log("filename", __filename);
+console.log("directoryname", __dirname);
+
 /**
   Handles user registration
  * @param {*} req - Express request object
@@ -37,7 +47,7 @@ export const createUser = async (req, res) => {
       newUser,
     });
   } catch (error) {
-    console.error(error); // Log the error for debugging
+    console.error(error);
     // Return an internal server error response if an error occurs
     return res
       .status(StatusCodes.INTERNAL_SERVER_ERROR)
@@ -109,4 +119,44 @@ export const logoutUser = (req, res) => {
   });
 
   return res.json({ message: "User logged out" });
+};
+
+/**
+ * Handles the user profile image update
+ * @param {*} req
+ * @param {*} res
+ * @returns
+ */
+export const updateProfile = async (req, res) => {
+  //Store that file information in database
+
+  try {
+    const { userId } = req.params;
+
+    if (!userId) {
+      return res.status(StatusCodes.NOT_FOUND).json({ error: "NOT FOUND" });
+    }
+
+    /* Send the image info to database */
+    const newProfile = await User.findByIdAndUpdate(
+      userId,
+      {
+        $set: {
+          imageName: req.file.filename,
+          imagePath: req.file.path,
+          imageMimetype: req.file.mimetype,
+          size: req.file.size,
+        },
+      },
+      { new: true }
+    );
+
+    return res
+      .status(StatusCodes.OK)
+      .json({ message: "Your profile image has been uploaded", newProfile });
+  } catch (error) {
+    return res
+      .status(StatusCodes.INTERNAL_SERVER_ERROR)
+      .json({ error: "Something went wrong", error: error.message });
+  }
 };

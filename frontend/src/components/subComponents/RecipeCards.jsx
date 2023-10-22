@@ -3,9 +3,19 @@ import useRecipeContext from "../../context/useRecipeContext";
 
 const RecipeCards = () => {
   const { recipe } = useRecipeContext();
+
+  // Check if `recipe` is an array before mapping over it
+  if (!Array.isArray(recipe)) {
+    return (
+      <div className="recipe-cards">
+        <p>No recipes available.</p>
+      </div>
+    );
+  }
+
   return (
     <div className="recipe-cards">
-      {recipe.map((recipe, index) => (
+      {recipe.map((recipeItem, index) => (
         <div className="card-hover" key={index}>
           <div className="card-hover__content">
             <h3 className="card-hover__title">

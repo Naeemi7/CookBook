@@ -1,4 +1,4 @@
-import RecipeCards from "./subComponents/RecipeCards";
+import RecipeCards from "../subComponents/RecipeCards";
 
 const Recipe = () => {
   return (

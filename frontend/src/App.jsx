@@ -7,9 +7,9 @@ import Register from "./pages/Register";
 import Login from "./pages/Login";
 import Logout from "./pages/Logout";
 import Dashboard from "./components/dashboard/Dashboard";
-import Recipe from "./components/Recipe";
 import UserProvider from "./provider/UserProvider";
 import RecipeProvider from "./provider/RecipeProvider";
+import Recipe from "./components/main/Recipe";
 
 function App() {
   return (

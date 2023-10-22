@@ -1,5 +1,5 @@
 import useUserContext from "../../context/useUserContext";
-import profile from "../../assets/images/navbar/profile.png";
+import profile from "../../assets/images/profile.png";
 
 const ProfileCard = () => {
   const { user } = useUserContext();
@@ -38,6 +38,8 @@ const ProfileCard = () => {
           </ul>
         </div>
       </div>
+
+      {/* Profile card */}
       <div className="flex flex-col items-center pb-10">
         <img
           className="w-24 h-24 mb-3 rounded-full shadow-lg"

@@ -1,4 +1,3 @@
-import { StatusCodes } from "http-status-codes";
 import Comment from "../models/Comment.js";
 import User from "../models/User.js";
 import Recipe from "../models/Recipe.js";

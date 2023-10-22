@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
 import useUserContext from "../../context/useUserContext";
-import guestProfile from "../../../public/profile.png";
-import logo from "../../../public/logo.png";
+import guestProfile from "../../assets/images/profile.png";
+import logo from "../../assets/images/logo.png";
 
 const Navbar = () => {
   const { loggedIn, user } = useUserContext();

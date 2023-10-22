@@ -9,9 +9,9 @@ import userRoutes from "./routes/userRoutes.js";
 import recipeRoutes from "./routes/recipeRoutes.js";
 import commentRoutes from "./routes/commentRoutes.js";
 
-import connectToMongoDB from "./database/database.js";
-import upload from "./multer/multer.js";
-import cloudUpload from "./cloudinary/cloudinary.js";
+import connectToMongoDB from "./config/database.js";
+import upload from "./config/multer.js";
+import cloudUpload from "./config/cloudinary.js";
 import path from "path";
 
 dotenv.config();

@@ -1,10 +1,12 @@
 import { NavLink, useNavigate } from "react-router-dom";
+import { useState } from "react";
 import useUserContext from "../context/useUserContext";
 import useSwal from "../hooks/ShowSwal";
 
 const Login = () => {
   const { loginUser, error } = useUserContext();
   const navigate = useNavigate();
+  const [showPassword, setShowPassword] = useState(false);
 
   // Use the showSwal function from the custom hook
   const { showSwal } = useSwal();
@@ -86,14 +88,23 @@ const Login = () => {
               >
                 Password
               </label>
-              <input
-                type="password"
-                name="password"
-                id="password"
-                className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5  dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                placeholder="••••••••"
-                required
-              />
+              <div className="relative">
+                <input
+                  type={showPassword ? "text" : "password"} // Use the state to toggle input type
+                  name="password"
+                  id="password"
+                  className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5  dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  placeholder="••••••••"
+                  required
+                />
+                <button
+                  type="button"
+                  className="absolute top-1/2 right-3 transform -translate-y-1/2 text-gray-500"
+                  onClick={() => setShowPassword(!showPassword)} // Toggle the state on button click
+                >
+                  {showPassword ? "Hide" : "Show"}
+                </button>
+              </div>
             </div>
 
             <button

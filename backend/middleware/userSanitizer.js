@@ -2,7 +2,7 @@ import { body } from "express-validator";
 import {
   uppercaseFirstLetter,
   checkUserExistence,
-} from "../helper/userHelper.js";
+} from "../helpers/userHelper.js";
 
 // Validation rules for user input
 export const validateUserRules = [

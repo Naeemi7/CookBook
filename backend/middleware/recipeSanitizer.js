@@ -1,6 +1,6 @@
 import { body } from "express-validator";
-import { uppercaseFirstLetter } from "../helper/userHelper.js";
-import { checkRecipeTitle } from "../helper/recipeHelper.js";
+import { uppercaseFirstLetter } from "../helpers/userHelper.js";
+import { checkRecipeTitle } from "../helpers/recipeHelper.js";
 
 export const validateRecipe = [
   //Sanitizes the recipe title

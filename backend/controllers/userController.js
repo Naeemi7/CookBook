@@ -1,7 +1,7 @@
 import { StatusCodes } from "http-status-codes";
 import User from "../models/User.js";
 import bcrypt from "bcrypt";
-import { generateJwt } from "../helper/jwt.js";
+import { generateJwt } from "../helpers/jwt.js";
 
 /**
   Handles user registration

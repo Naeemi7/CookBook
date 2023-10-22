@@ -1,6 +1,5 @@
 import express from "express";
 import dotenv from "dotenv";
-import mongoose from "mongoose";
 import cors from "cors";
 import cookieParser from "cookie-parser";
 import bodyParser from "body-parser";
@@ -10,6 +9,7 @@ import userRoutes from "./routes/userRoutes.js";
 import recipeRoutes from "./routes/recipeRoutes.js";
 import commentRoutes from "./routes/commentRoutes.js";
 
+import connectToMongoDB from "./database/database.js";
 import upload from "./multer/multer.js";
 import cloudUpload from "./cloudinary/cloudinary.js";
 import path from "path";
@@ -40,22 +40,6 @@ const corsOptions = {
 };
 
 app.use(cors(corsOptions));
-
-// Connecting to the database
-mongoose
-  .connect(
-    `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@${process.env.DB_HOST}/${process.env.DB_NAME}`,
-    {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-    }
-  )
-  .then(() => {
-    console.log("Database connected! 😃");
-  })
-  .catch((error) => {
-    console.log("Database connection error:", error.message);
-  });
 
 //Uploading the images to cloudinary
 app.post("/upload-profile", upload.array("profile"), async (req, res) => {
@@ -94,6 +78,8 @@ app.use("/api/recipe", recipeRoutes);
 app.use("/api/comment", commentRoutes);
 
 // Server is listening on port 3000
-app.listen(port, () => {
-  console.log("Server is listening on port", port);
+connectToMongoDB().then(() => {
+  app.listen(port, () => {
+    console.log("Server is listening on port", port);
+  });
 });

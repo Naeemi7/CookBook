@@ -57,6 +57,10 @@ const UserProvider = ({ children }) => {
     }
   };
 
+  /**
+   * Hanles User signup
+   * @param {*} data
+   */
   const registerUser = async (data) => {
     try {
       const response = await userAPI.post("/register", data);
@@ -65,6 +69,8 @@ const UserProvider = ({ children }) => {
       console.log(error);
     }
   };
+
+  const updateProfile = async (profile) => {};
 
   return (
     <userContext.Provider

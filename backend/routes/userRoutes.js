@@ -16,6 +16,6 @@ router.post("/register", validateUserRules, validator, createUser);
 router.post("/login", loginUser);
 router.get("/logout", logoutUser);
 
-router.post("/upload-profile/:userId", upload.single("image"), updateProfile);
+router.patch("/upload-profile/:userId", upload.single("image"), updateProfile);
 
 export default router;

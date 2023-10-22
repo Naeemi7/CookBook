@@ -128,35 +128,42 @@ export const logoutUser = (req, res) => {
  * @returns
  */
 export const updateProfile = async (req, res) => {
-  //Store that file information in database
-
   try {
     const { userId } = req.params;
 
     if (!userId) {
-      return res.status(StatusCodes.NOT_FOUND).json({ error: "NOT FOUND" });
+      return res
+        .status(StatusCodes.NOT_FOUND)
+        .json({ error: "User ID not found" });
     }
 
-    /* Send the image info to database */
+    /* Send the image info to the database */
     const newProfile = await User.findByIdAndUpdate(
       userId,
       {
         $set: {
-          imageName: req.file.filename,
-          imagePath: req.file.path,
-          imageMimetype: req.file.mimetype,
-          size: req.file.size,
+          "profileImage.imageName": req.file.filename,
+          "profileImage.imagePath": req.file.path,
+          "profileImage.imageMimetype": req.file.mimetype,
+          "profileImage.size": req.file.size,
         },
       },
       { new: true }
     );
 
-    return res
-      .status(StatusCodes.OK)
-      .json({ message: "Your profile image has been uploaded", newProfile });
+    if (!newProfile) {
+      return res
+        .status(StatusCodes.NOT_FOUND)
+        .json({ error: "User not found" });
+    }
+
+    return res.status(StatusCodes.OK).json({
+      message: "Your profile image has been uploaded",
+      newProfile,
+    });
   } catch (error) {
     return res
       .status(StatusCodes.INTERNAL_SERVER_ERROR)
-      .json({ error: "Something went wrong", error: error.message });
+      .json({ error: "Something went wrong", errorMessage: error.message });
   }
 };

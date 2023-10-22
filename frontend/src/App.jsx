@@ -1,4 +1,7 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import "./styles/app.scss";
+
+/* Componenets */
 import Navbar from "./components/Navbar/Navbar";
 import Register from "./pages/Register";
 import Login from "./pages/Login";

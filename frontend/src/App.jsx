@@ -10,6 +10,7 @@ import Dashboard from "./components/dashboard/Dashboard";
 import UserProvider from "./provider/UserProvider";
 import RecipeProvider from "./provider/RecipeProvider";
 import Recipe from "./components/main/Recipe";
+import PrivateRoutes from "./utils/PrivateRoutes";
 
 function App() {
   return (
@@ -19,11 +20,16 @@ function App() {
         <RecipeProvider>
           <Navbar />
           <Routes>
-            <Route path="/" element={<Recipe />} />
+            {/* Protected Routes */}
+            <Route element={<PrivateRoutes />}>
+              <Route path="/dashboard" element={<Dashboard />} />
+            </Route>
+
+            {/* Unprotect Routes */}
+            <Route path="/" exact element={<Recipe />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route path="/logout" element={<Logout />} />
-            <Route path="/dashboard" element={<Dashboard />} />
           </Routes>
         </RecipeProvider>
       </UserProvider>

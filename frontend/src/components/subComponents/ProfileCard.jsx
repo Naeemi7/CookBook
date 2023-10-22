@@ -42,7 +42,7 @@ const ProfileCard = () => {
       {/* Profile card */}
       <div className="flex flex-col items-center pb-10">
         <img
-          className="w-24 h-24 mb-3 rounded-full shadow-lg"
+          className="w-40 h-40 mb-3 rounded-full shadow-lg"
           src={profile}
           type="file"
           alt=""

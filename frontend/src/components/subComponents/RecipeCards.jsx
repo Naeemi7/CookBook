@@ -15,17 +15,11 @@ const RecipeCards = () => {
 
   return (
     <div className="recipe-cards">
-      {recipe.map((recipeItem, index) => (
+      {recipe.map((recipe, index) => (
         <div className="card-hover" key={index}>
           <div className="card-hover__content">
-            <h3 className="card-hover__title">
-              Make your <span>choice</span> right now!
-            </h3>
-            <p className="card-hover__text">
-              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Officia
-              quisquam doloremque nostrum laboriosam, blanditiis libero corporis
-              nulla a aut?
-            </p>
+            <h3 className="card-hover__title">{recipe.title}</h3>
+            <p className="card-hover__text">{recipe.description}</p>
             <a href="#" className="card-hover__link">
               <span>Learn How</span>
               <svg

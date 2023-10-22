@@ -1,8 +1,22 @@
+import { useRef, useState } from "react";
 import useUserContext from "../../context/useUserContext";
 import profile from "../../assets/images/profile.png";
 
 const ProfileCard = () => {
+  const inputRef = useRef(null);
+  const [image, setImage] = useState(null);
   const { user } = useUserContext();
+
+  const handleImageClick = () => {
+    inputRef.current.click();
+  };
+
+  const handleImageChange = (event) => {
+    const file = event.target.files[0];
+    console.log(file);
+    setImage(file);
+  };
+
   return (
     <div className="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
       <div className="flex justify-end px-4 pt-4">
@@ -41,12 +55,30 @@ const ProfileCard = () => {
 
       {/* Profile card */}
       <div className="flex flex-col items-center pb-10">
-        <img
-          className="w-40 h-40 mb-3 rounded-full shadow-lg"
-          src={profile}
-          type="file"
-          alt=""
-        />
+        <div onClick={handleImageClick}>
+          {image ? (
+            <img
+              className="w-40 h-40 mb-3 rounded-full shadow-lg"
+              src={URL.createObjectURL(image)} // Use URL.createObjectURL to display the uploaded image
+              type="file"
+              alt=""
+            />
+          ) : (
+            <img
+              className="w-40 h-40 mb-3 rounded-full shadow-lg"
+              src={profile}
+              type="file"
+              alt=""
+            />
+          )}
+          <input
+            type="file"
+            ref={inputRef}
+            onChange={handleImageChange}
+            style={{ display: "none" }}
+          />
+        </div>
+
         <h5 className="mb-1 text-xl font-medium text-gray-900 dark:text-white">
           {`${user.firstname} ${user.lastname}`}
         </h5>

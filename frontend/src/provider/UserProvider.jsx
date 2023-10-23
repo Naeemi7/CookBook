@@ -1,20 +1,12 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import userContext from "../context/userContext";
 import userAPI from "../api/userAPI";
 
 const UserProvider = ({ children }) => {
-  const [loggedIn, setLoggedIn] = useState(false);
-  const [user, setUser] = useState(null);
+  const storedUser = JSON.parse(localStorage.getItem("user"));
+  const [loggedIn, setLoggedIn] = useState(!!storedUser);
+  const [user, setUser] = useState(storedUser);
   const [error, setError] = useState("");
-
-  // Checks if the user is already logged in on component mount
-  useEffect(() => {
-    const storedUser = localStorage.getItem("user");
-    if (storedUser) {
-      setUser(JSON.parse(storedUser));
-      setLoggedIn(true);
-    }
-  }, []);
 
   /**
    * Handles the user login
@@ -24,12 +16,14 @@ const UserProvider = ({ children }) => {
     try {
       //setError(""); // Clear any previous errors
       const response = await userAPI.post("/login", data);
-      setUser(response.data.user);
 
+      const userData = response.data.user;
+
+      setUser(userData);
       setLoggedIn(true);
 
       // Store the user data in localStorage
-      localStorage.setItem("user", JSON.stringify(response.data.user));
+      localStorage.setItem("user", JSON.stringify(userData));
       console.log("no errors found");
     } catch (err) {
       console.log("errors found");
@@ -77,7 +71,7 @@ const UserProvider = ({ children }) => {
     }
   };
 
-  /*  const updateProfile = async (profile) => {}; */
+  /*   const updateProfile = async (profile) => {}; */
 
   return (
     <userContext.Provider

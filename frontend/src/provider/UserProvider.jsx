@@ -22,7 +22,7 @@ const UserProvider = ({ children }) => {
    */
   const loginUser = async (data) => {
     try {
-      setError(""); // Clear any previous errors
+      //setError(""); // Clear any previous errors
       const response = await userAPI.post("/login", data);
       setUser(response.data.user);
 
@@ -30,15 +30,21 @@ const UserProvider = ({ children }) => {
 
       // Store the user data in localStorage
       localStorage.setItem("user", JSON.stringify(response.data.user));
+      console.log("no errors found");
     } catch (err) {
+      console.log("errors found");
       setLoggedIn(false);
       console.log(err.response.status);
 
-      if (err.response.status === 401) {
+      if (err.response && err.response.status === 401) {
         setError("Either your email or password is incorrect");
+      } else if (err.response && err.response.status === 403) {
+        setError("You don't have permission to log in");
       } else {
-        setError("An unknown error occurred while logging in.");
+        setError("An unknown error occurred while logging in");
       }
+
+      return Promise.reject(err);
     }
   };
 
@@ -71,7 +77,7 @@ const UserProvider = ({ children }) => {
     }
   };
 
-  const updateProfile = async (profile) => {};
+  /*  const updateProfile = async (profile) => {}; */
 
   return (
     <userContext.Provider

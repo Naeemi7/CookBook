@@ -11,6 +11,7 @@ import UserProvider from "./provider/UserProvider";
 import RecipeProvider from "./provider/RecipeProvider";
 import Recipe from "./components/main/Recipe";
 import PrivateRoutes from "./utils/PrivateRoutes";
+import Footer from "./components/Footer/Footer";
 
 function App() {
   return (
@@ -31,6 +32,8 @@ function App() {
             <Route path="/register" element={<Register />} />
             <Route path="/logout" element={<Logout />} />
           </Routes>
+
+          <Footer />
         </RecipeProvider>
       </UserProvider>
     </BrowserRouter>

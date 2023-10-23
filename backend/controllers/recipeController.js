@@ -87,28 +87,28 @@ export const getAllRecipeByUserId = async (req, res) => {
  */
 export const getAllRecipe = async (req, res) => {
   try {
+    const limit = 3; // Fixed limit of 3 recipes per page
+    const skip = parseInt(req.query.skip, 10);
+
     const recipes = await Recipe.find()
-      .limit(req.query.limit)
-      .skip(req.query.skip)
+      .limit(limit)
+      .skip(skip)
       .populate("user");
 
     if (!recipes) {
       return res
         .status(StatusCodes.NOT_FOUND)
-        .json({ error: "The recipies not found", error: error.mesage });
+        .json({ error: "Recipes not found" });
     }
 
-    return res
-      .status(StatusCodes.OK)
-      .json({ message: "All Recipes are: ", recipes });
+    return res.status(StatusCodes.OK).json({ recipes });
   } catch (error) {
     console.log(error);
     return res
       .status(StatusCodes.INTERNAL_SERVER_ERROR)
-      .json({ error: "Something went wrong", error: error.message });
+      .json({ error: "Something went wrong", message: error.message });
   }
 };
-
 /**
  * Handles the update for recipe using recipe ID
  * @param {*} req

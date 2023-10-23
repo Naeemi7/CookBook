@@ -22,10 +22,11 @@ const UserProvider = ({ children }) => {
    */
   const loginUser = async (data) => {
     try {
+      setError(""); // Clear any previous errors
       const response = await userAPI.post("/login", data);
       setUser(response.data.user);
+
       setLoggedIn(true);
-      setError(""); // Clear any previous errors
 
       // Store the user data in localStorage
       localStorage.setItem("user", JSON.stringify(response.data.user));

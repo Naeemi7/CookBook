@@ -87,7 +87,10 @@ export const getAllRecipeByUserId = async (req, res) => {
  */
 export const getAllRecipe = async (req, res) => {
   try {
-    const recipes = await Recipe.find().populate("user");
+    const recipes = await Recipe.find()
+      .limit(req.query.limit)
+      .skip(req.query.skip)
+      .populate("user");
 
     if (!recipes) {
       return res

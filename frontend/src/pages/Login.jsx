@@ -28,9 +28,8 @@ const Login = () => {
         showSwal("error", "Oops...", error, 2000);
       } else {
         showSwal("success", "Login Successful", null, 2000);
-        setTimeout(() => {
-          navigate("/");
-        }, 2000);
+        navigate("/");
+        /*    setTimeout(() => {}, 2000); */
       }
     } catch (err) {
       console.log(err.message);

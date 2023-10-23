@@ -45,7 +45,7 @@ const PaginationButton = () => {
           </li>
           {Array.from({ length: totalPages }).map((_, index) => (
             <li key={index}>
-              {currentPage !== index + 1 ? ( // Changed the condition to compare with the current page
+              {currentPage > 0 ? (
                 <a
                   href="#"
                   onClick={() => handlePageChange(index * limit)}
@@ -53,7 +53,7 @@ const PaginationButton = () => {
                     "flex items-center justify-center px-3 h-8 leading-tight text-gray-200 bg-gray-700 border border-gray-300 rounded-r-lg hover-bg-gray-100 hover-text-gray-700 dark-bg-gray-800 dark-border-gray-700 dark-text-gray-400 dark-hover-bg-gray-700 dark-hover-text-gray-700"
                   }
                 >
-                  {index + 1} {/* Display the correct page number */}
+                  {currentPage}
                 </a>
               ) : null}
             </li>

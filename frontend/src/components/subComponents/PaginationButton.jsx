@@ -1,19 +1,25 @@
+import React from "react";
 import useRecipeContext from "../../context/useRecipeContext";
 
 const PaginationButton = () => {
-  const { setSkip, numberOfPages, skip } = useRecipeContext();
+  const { setSkip, skip, limit, recipe } = useRecipeContext();
 
   const handlePageChange = (newSkip) => {
     setSkip(newSkip);
   };
+
+  const totalPages = Math.ceil(recipe.length / limit);
+  const currentPage = skip / limit + 1;
 
   return (
     <ul className="flex items-center -space-x-px mt-12 h-8 text-sm">
       <li>
         <a
           href="#"
-          className="flex items-center justify-center px-3 h-8 ml-0 leading-tight text-gray-500 bg-white border border-gray-300 rounded-l-lg hover:bg-gray-100 hover-text-gray-700 dark-bg-gray-800 dark-border-gray-700 dark-text-gray-400 dark-hover-bg-gray-700 dark-hover-text-white"
-          onClick={() => handlePageChange(0)}
+          className={`flex items-center justify-center px-3 h-8 ml-0 leading-tight text-gray-500 bg-white border border-gray-300 rounded-l-lg hover:bg-gray-100 hover-text-gray-700 dark-bg-gray-800 dark-border-gray-700 dark-text-gray-400 dark-hover-bg-gray-700 dark-hover-text-white ${
+            skip === 0 ? "inactive-prev" : "active-prev"
+          }`}
+          onClick={() => handlePageChange(skip - limit)}
         >
           <span className="sr-only">Previous</span>
           <svg
@@ -33,24 +39,26 @@ const PaginationButton = () => {
           </svg>
         </a>
       </li>
-      {Array.from({ length: numberOfPages }).map((_, index) => (
+      {Array.from({ length: totalPages }).map((_, index) => (
         <li key={index}>
           <a
             href="#"
-            onClick={() => handlePageChange(index * 3)}
+            onClick={() => handlePageChange(index * limit)}
             className={`${
-              index * 3 === skip ? "active-style" : "inactive-style" // Define or replace these class names
+              index * limit === skip ? "active-style" : "inactive-style"
             }`}
           >
-            {index + 1}
+            {currentPage}
           </a>
         </li>
       ))}
       <li>
         <a
           href="#"
-          className="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-button border border-gray-300 rounded-r-lg hover-bg-gray-100 hover-text-gray-700 dark-bg-gray-800 dark-border-gray-700 dark-text-gray-400 dark-hover-bg-gray-700 dark-hover-text-white"
-          onClick={() => handlePageChange((numberOfPages - 1) * 3)}
+          className={`flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-button border border-gray-300 rounded-r-lg hover-bg-gray-100 hover-text-gray-700 dark-bg-gray-800 dark-border-gray-700 dark-text-gray-400 dark-hover-bg-gray-700 dark-hover-text-white ${
+            skip + limit >= recipe.length ? "inactive-next" : "active-next"
+          }`}
+          onClick={() => handlePageChange(skip + limit)}
         >
           <span className="sr-only">Next</span>
           <svg

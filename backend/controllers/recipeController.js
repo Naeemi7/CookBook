@@ -87,8 +87,7 @@ export const getAllRecipeByUserId = async (req, res) => {
  */
 export const getAllRecipe = async (req, res) => {
   try {
-    const limit = 3; // Fixed limit of 3 recipes per page
-    const skip = parseInt(req.query.skip, 10);
+    const { limit, skip } = req.query;
 
     const recipes = await Recipe.find()
       .limit(limit)

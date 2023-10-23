@@ -4,38 +4,30 @@ import recipeContext from "../context/recipeContext";
 import recipeAPI from "../api/recipeAPI";
 
 const RecipeProvider = ({ children }) => {
-  const [recipe, setRecipe] = useState({});
+  const [recipe, setRecipe] = useState([]);
   const [skip, setSkip] = useState(0);
-  const [totalRecipes, setTotalRecipes] = useState(0);
-  const limitPerPage = 3; // Fixed limit of 3 recipes per page
+  const [limit, setLimit] = useState(3);
 
   useEffect(() => {
     const getAllRecipes = async () => {
       try {
-        const response = await recipeAPI.get(
-          `/?limit=${limitPerPage}&skip=${skip}`
-        );
+        const response = await recipeAPI.get(`/?limit=${limit}&skip=${skip}`);
         console.log(response);
         setRecipe(response.data.recipes);
-        setTotalRecipes(response.data.totalRecipes);
       } catch (error) {
         console.log(error);
       }
     };
     getAllRecipes();
-  }, [skip, limitPerPage]);
-
-  // Calculate the number of pages based on the total number of recipes and the limit per page
-  const numberOfPages = Math.ceil(totalRecipes / limitPerPage);
+  }, [skip, limit]);
 
   return (
-    <recipeContext.Provider value={{ recipe, setSkip, numberOfPages, skip }}>
+    <recipeContext.Provider value={{ recipe, setSkip, skip, limit, setLimit }}>
       {children}
     </recipeContext.Provider>
   );
 };
 
-// Validates props
 RecipeProvider.propTypes = {
   children: PropTypes.element.isRequired,
 };

@@ -1,4 +1,5 @@
 import RecipeCards from "../subComponents/RecipeCards";
+import PaginationButton from "../subComponents/PaginationButton";
 
 const Recipe = () => {
   return (
@@ -9,6 +10,9 @@ const Recipe = () => {
       <div className="recipe-wrapper">
         <RecipeCards />
       </div>
+
+      {/* Pagination buttons */}
+      <PaginationButton />
     </div>
   );
 };

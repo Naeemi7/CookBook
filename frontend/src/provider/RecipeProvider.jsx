@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import PropTypes from "prop-types";
 import recipeContext from "../context/recipeContext";
 import recipeAPI from "../api/recipeAPI";
 
@@ -17,13 +18,19 @@ const RecipeProvider = ({ children }) => {
       }
     };
     getAllRecipes();
-  }, []);
+  }, [skip]);
 
   return (
     <recipeContext.Provider value={{ recipe }}>
       {children}
     </recipeContext.Provider>
   );
+};
+
+//Validates props
+// Validates props
+RecipeProvider.propTypes = {
+  children: PropTypes.element.isRequired,
 };
 
 export default RecipeProvider;

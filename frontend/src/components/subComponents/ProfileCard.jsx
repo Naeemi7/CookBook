@@ -1,7 +1,7 @@
 import { useRef, useState } from "react";
 import useUserContext from "../../context/useUserContext";
 import { IoMdPerson } from "react-icons/io";
-import { FaCloudArrowUp } from "react-icons/fa6";
+import { FaPaperclip } from "react-icons/fa";
 
 const ProfileCard = () => {
   const inputRef = useRef(null);
@@ -66,16 +66,16 @@ const ProfileCard = () => {
                 alt=""
               />
               <div className="opacity-0 group-hover:opacity-60 w-full h-full rounded-full absolute flex justify-center items-center cursor-pointer transition duration-500">
-                <FaCloudArrowUp className="hidden group-hover:block text-4xl text-button" />{" "}
+                <FaPaperclip className="hidden group-hover:block text-4xl text-gray-300" />
                 {/* Use React Icons component */}
               </div>
             </div>
           ) : (
             <div className="group relative w-40 h-40 mb-3 rounded-full shadow-lg">
-              <IoMdPerson className="w-full h-full rounded-full absolute text-4xl text-gray-500" />{" "}
+              <IoMdPerson className="w-full h-full rounded-full absolute text-4xl text-gray-500" />
               {/* Default user icon */}
               <div className="opacity-0 group-hover:opacity-60 w-full h-full rounded-full absolute flex justify-center items-center cursor-pointer transition duration-500">
-                <FaCloudArrowUp className="hidden group-hover:block text-4xl text-button" />{" "}
+                <FaPaperclip className="hidden group-hover:block text-4xl text-gray-300" />
                 {/* Use React Icons component */}
               </div>
             </div>
@@ -100,7 +100,7 @@ const ProfileCard = () => {
           className="text-gray-700 bg-button hover:bg-button mt-5 focus:outline-none  font-medium rounded-lg text-sm px-4 py-2 text-center inline-flex items-center dark:bg-button dark:hover:bg-header "
         >
           Update
-          <FaCloudArrowUp className="w-4 h-4 ml-2" />
+          <FaPaperclip className="w-4 h-4 ml-2" />
         </button>
       </div>
     </div>

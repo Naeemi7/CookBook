@@ -1,4 +1,5 @@
 import { useState } from "react";
+import PropTypes from "prop-types";
 import userContext from "../context/userContext";
 import userAPI from "../api/userAPI";
 
@@ -88,6 +89,11 @@ const UserProvider = ({ children }) => {
       {children}
     </userContext.Provider>
   );
+};
+
+//Validates props
+UserProvider.propTypes = {
+  children: PropTypes.element.isRequired,
 };
 
 export default UserProvider;

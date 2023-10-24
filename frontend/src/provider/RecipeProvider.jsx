@@ -12,7 +12,7 @@ const RecipeProvider = ({ children }) => {
     const getAllRecipes = async () => {
       try {
         const response = await recipeAPI.get(`/?limit=${limit}&skip=${skip}`);
-        console.log(response);
+
         setRecipe(response.data.recipes);
       } catch (error) {
         console.log(error);

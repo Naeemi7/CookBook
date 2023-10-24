@@ -8,6 +8,7 @@ const UserProvider = ({ children }) => {
   const [loggedIn, setLoggedIn] = useState(!!storedUser);
   const [user, setUser] = useState(storedUser);
   const [error, setError] = useState("");
+  const [profileImage, setProfileImage] = useState(null);
 
   /**
    * Handles the user login
@@ -72,7 +73,18 @@ const UserProvider = ({ children }) => {
     }
   };
 
-  /*   const updateProfile = async (profile) => {}; */
+  const updateProfile = async (user, profile) => {
+    try {
+      const response = await userAPI.patch(
+        `/upload-profile/${user.id}`,
+        profile
+      );
+      console.log("I am ok from Uploading profile", response);
+      setProfileImage(response.data.newProfile.profileImage);
+    } catch (error) {
+      console.log("I am error from upload profile", error);
+    }
+  };
 
   return (
     <userContext.Provider
@@ -84,6 +96,8 @@ const UserProvider = ({ children }) => {
         error,
         logout,
         registerUser,
+        updateProfile,
+        profileImage,
       }}
     >
       {children}

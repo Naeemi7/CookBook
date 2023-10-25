@@ -34,17 +34,13 @@ const Register = () => {
 
     try {
       await registerUser(data);
+      showSwal("success", "Registeration Successful", null, 2000);
 
-      if (error) {
-        showSwal("error", "Oops...", error, 2000);
-      } else {
-        showSwal("success", "Registeration Successful", null, 2000);
-        setTimeout(() => {
-          navigate("/dashboard");
-        }, 2000);
-      }
-    } catch (error) {
+      navigate("/login");
+    } catch (err) {
       console.log(error);
+
+      showSwal("error", "Oops...", error, 2000);
     }
   };
 

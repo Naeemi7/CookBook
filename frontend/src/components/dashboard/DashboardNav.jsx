@@ -1,3 +1,5 @@
+import { NavLink } from "react-router-dom";
+
 const DashboardNav = () => {
   return (
     <div className="h-full px-3 py-4 overflow-y-auto dark:bg-gray-800 dark:border-gray-700">
@@ -11,13 +13,17 @@ const DashboardNav = () => {
               className="w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
               aria-hidden="true"
               xmlns="http://www.w3.org/2000/svg"
-              fill="currentColor"
-              viewBox="0 0 22 21"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
             >
-              <path d="M16.975 11H10V4.025a1 1 0 0 0-1.066-.998 8.5 8.5 0 1 0 9.039 9.039.999.999 0 0 0-1-1.066h.002Z" />
-              <path d="M12.5 0c-.157 0-.311.01-.565.027A1 1 0 0 0 11 1.02V10h8.975a1 1 0 0 0 1-.935c.013-.188.028-.374.028-.565A8.51 8.51 0 0 0 12.5 0Z" />
+              <path d="M19,21 L23,21 L23,13 L19,13 L19,21 Z M15,21 L15,13 M9,21 L9,13 M1,3 L3,3 L3,1 L1,1 L1,3 Z M3,3 L21,3 L21,1 L3,1 L3,3 Z M5,13 L5,19 C5,20.1045695 5.8954305,21 7,21 L17,21 C18.1045695,21 19,20.1045695 19,19 L19,13 M12,21 L12,13" />
             </svg>
-            <span className="ml-3">Dashboard</span>
+
+            <span className="ml-3">Add Recipe</span>
           </a>
         </li>
         <li>

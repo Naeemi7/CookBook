@@ -16,7 +16,7 @@ const UserProvider = ({ children }) => {
    */
   const loginUser = async (data) => {
     try {
-      //setError(""); // Clear any previous errors
+      setError(""); // Clear any previous errors
       const response = await userAPI.post("/login", data);
 
       const userData = response.data.user;
@@ -61,18 +61,34 @@ const UserProvider = ({ children }) => {
   };
 
   /**
-   * Hanles User signup
+   * Handles User signup
    * @param {*} data
    */
   const registerUser = async (data) => {
     try {
+      //Empty the error state
+      setError("");
+
       const response = await userAPI.post("/register", data);
       console.log(response);
-    } catch (error) {
-      console.log(error);
+    } catch (err) {
+      console.log(err.response.status);
+
+      if (err.response && err.response.status === 400) {
+        setError("A user with this email already exists");
+      } else {
+        setError("An unknown error occurred while logging in");
+      }
+
+      return Promise.reject(err);
     }
   };
 
+  /**
+   * Handles the user  update profile picture
+   * @param {*} user
+   * @param {*} profile
+   */
   const updateProfile = async (user, profile) => {
     try {
       const response = await userAPI.patch(

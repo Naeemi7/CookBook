@@ -34,6 +34,13 @@ const ProfileCard = () => {
           <label htmlFor="profile-image">
             <div className="group relative w-40 h-40 mb-3 rounded-full shadow-lg">
               <IoMdPerson className="w-full h-full rounded-full absolute text-4xl text-gray-500" />
+              {image && (
+                <img
+                  className="w-full h-full rounded-full absolute text-4xl text-gray-500"
+                  src={URL.createObjectURL(image)} // Display the selected image
+                  alt=""
+                />
+              )}
               <input
                 id="profile-image"
                 type="file"

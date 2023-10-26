@@ -1,21 +1,22 @@
 import multer from "multer";
 import bytes from "bytes";
+import storage from "./cloudStorage.js";
 
 //Specifying the Storage
-const storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    //where to store the file
-    cb(null, "./uploads");
-  },
+// const storage = multer.diskStorage({
+//   destination: function (req, file, cb) {
+//     //where to store the file
+//     cb(null, "./uploads");
+//   },
 
-  //Randomize the name of the file
-  filename: (req, file, callback) => {
-    const ext = file.mimetype.split("/")[1];
-    const originalNameExtension = file.originalname.split(".")[0];
+//   //Randomize the name of the file
+//   filename: (req, file, callback) => {
+//     const ext = file.mimetype.split("/")[1];
+//     const originalNameExtension = file.originalname.split(".")[0];
 
-    callback(null, `${originalNameExtension}-${Date.now()}.${ext}`);
-  },
-});
+//     callback(null, `${originalNameExtension}-${Date.now()}.${ext}`);
+//   },
+// });
 
 const upload = multer({
   storage: storage,
